@@ -123,6 +123,10 @@ jobs:
         run: npm run lint
         if: ${{ !cancelled() }}
 
+      - name: Run formatter fix
+        run: npm run format:fix
+        if: ${{ !cancelled() }}
+
       - name: Run formatter
         run: npm run format
         if: ${{ !cancelled() }}
