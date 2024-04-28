@@ -39,7 +39,7 @@
 <SideBarSection>
   <nav aria-label="Primary">
     <SideBarLink
-      title="Photos"
+      title="照片"
       routeId="/(user)/photos"
       bind:isSelected={isPhotosSelected}
       icon={isPhotosSelected ? mdiImageMultiple : mdiImageMultipleOutline}
@@ -49,18 +49,18 @@
           <LoadingSpinner />
         {:then data}
           <div>
-            <p>{data.videos.toLocaleString($locale)} Videos</p>
-            <p>{data.images.toLocaleString($locale)} Photos</p>
+            <p>{data.videos.toLocaleString($locale)} 视频</p>
+            <p>{data.images.toLocaleString($locale)} 照片</p>
           </div>
         {/await}
       </svelte:fragment>
     </SideBarLink>
     {#if $featureFlags.search}
-      <SideBarLink title="Explore" routeId="/(user)/explore" icon={mdiMagnify} />
+      <SideBarLink title="探索" routeId="/(user)/explore" icon={mdiMagnify} />
     {/if}
 
     {#if $featureFlags.map}
-      <SideBarLink title="Map" routeId="/(user)/map" icon={mdiMap} />
+      <SideBarLink title="地图" routeId="/(user)/map" icon={mdiMap} />
     {/if}
 
     {#if $sidebarSettings.people}
@@ -68,7 +68,7 @@
     {/if}
     {#if $sidebarSettings.sharing}
       <SideBarLink
-        title="Sharing"
+        title="分享"
         routeId="/(user)/sharing"
         icon={isSharingSelected ? mdiAccountMultiple : mdiAccountMultipleOutline}
         bind:isSelected={isSharingSelected}
@@ -78,7 +78,7 @@
             <LoadingSpinner />
           {:then data}
             <div>
-              <p>{data.shared.toLocaleString($locale)} Albums</p>
+              <p>{data.shared.toLocaleString($locale)} 影集</p>
             </div>
           {/await}
         </svelte:fragment>
@@ -90,7 +90,7 @@
       <hr class="mx-4 mb-[31px] mt-8 block group-hover:sm:hidden md:hidden" />
     </div>
     <SideBarLink
-      title="Favorites"
+      title="收藏夹"
       routeId="/(user)/favorites"
       icon={isFavoritesSelected ? mdiHeartMultiple : mdiHeartMultipleOutline}
       bind:isSelected={isFavoritesSelected}
@@ -100,46 +100,46 @@
           <LoadingSpinner />
         {:then data}
           <div>
-            <p>{data.videos.toLocaleString($locale)} Videos</p>
-            <p>{data.images.toLocaleString($locale)} Photos</p>
+            <p>{data.videos.toLocaleString($locale)} 视频</p>
+            <p>{data.images.toLocaleString($locale)} 照片</p>
           </div>
         {/await}
       </svelte:fragment>
     </SideBarLink>
-    <SideBarLink title="Albums" routeId="/(user)/albums" icon={mdiImageAlbum} flippedLogo>
+    <SideBarLink title="影集" routeId="/(user)/albums" icon={mdiImageAlbum} flippedLogo>
       <svelte:fragment slot="moreInformation">
         {#await handleAlbumCount()}
           <LoadingSpinner />
         {:then data}
           <div>
-            <p>{data.owned.toLocaleString($locale)} Albums</p>
+            <p>{data.owned.toLocaleString($locale)} 影集</p>
           </div>
         {/await}
       </svelte:fragment>
     </SideBarLink>
 
-    <SideBarLink title="Archive" routeId="/(user)/archive" icon={mdiArchiveArrowDownOutline}>
+    <SideBarLink title="归档" routeId="/(user)/archive" icon={mdiArchiveArrowDownOutline}>
       <svelte:fragment slot="moreInformation">
         {#await getStats({ isArchived: true })}
           <LoadingSpinner />
         {:then data}
           <div>
-            <p>{data.videos.toLocaleString($locale)} Videos</p>
-            <p>{data.images.toLocaleString($locale)} Photos</p>
+            <p>{data.videos.toLocaleString($locale)} 视频</p>
+            <p>{data.images.toLocaleString($locale)} 照片</p>
           </div>
         {/await}
       </svelte:fragment>
     </SideBarLink>
 
     {#if $featureFlags.trash}
-      <SideBarLink title="Trash" routeId="/(user)/trash" icon={mdiTrashCanOutline}>
+      <SideBarLink title="回收站" routeId="/(user)/trash" icon={mdiTrashCanOutline}>
         <svelte:fragment slot="moreInformation">
           {#await getStats({ isTrashed: true })}
             <LoadingSpinner />
           {:then data}
             <div>
-              <p>{data.videos.toLocaleString($locale)} Videos</p>
-              <p>{data.images.toLocaleString($locale)} Photos</p>
+              <p>{data.videos.toLocaleString($locale)} 视频</p>
+              <p>{data.images.toLocaleString($locale)} 照片</p>
             </div>
           {/await}
         </svelte:fragment>

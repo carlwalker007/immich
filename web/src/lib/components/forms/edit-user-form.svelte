@@ -90,30 +90,30 @@
   }
 </script>
 
-<FullScreenModal id="edit-user-modal" title="Edit user" icon={mdiAccountEditOutline} {onClose}>
+<FullScreenModal id="edit-user-modal" title="编辑用户" icon={mdiAccountEditOutline} {onClose}>
   <form on:submit|preventDefault={editUser} autocomplete="off" id="edit-user-form">
     <div class="my-4 flex flex-col gap-2">
-      <label class="immich-form-label" for="email">Email</label>
+      <label class="immich-form-label" for="email">邮箱</label>
       <input class="immich-form-input" id="email" name="email" type="email" bind:value={user.email} />
     </div>
 
     <div class="my-4 flex flex-col gap-2">
-      <label class="immich-form-label" for="name">Name</label>
+      <label class="immich-form-label" for="name">名字</label>
       <input class="immich-form-input" id="name" name="name" type="text" required bind:value={user.name} />
     </div>
 
     <div class="my-4 flex flex-col gap-2">
       <label class="flex items-center gap-2 immich-form-label" for="quotaSize"
-        >Quota Size (GiB) {#if quotaSizeWarning}
+        >空间配额大小 (GiB) {#if quotaSizeWarning}
           <p class="text-red-400 text-sm">You set a quota higher than the disk size</p>
         {/if}</label
       >
       <input class="immich-form-input" id="quotaSize" name="quotaSize" type="number" min="0" bind:value={quotaSize} />
-      <p>Note: Enter 0 for unlimited quota</p>
+      <p>注意：输入 0 表示无限配额</p>
     </div>
 
     <div class="my-4 flex flex-col gap-2">
-      <label class="immich-form-label" for="storage-label">Storage Label</label>
+      <label class="immich-form-label" for="storage-label">存储标签</label>
       <input
         class="immich-form-input"
         id="storage-label"
@@ -123,9 +123,9 @@
       />
 
       <p>
-        Note: To apply the Storage Label to previously uploaded assets, run the
+        注意：要将存储标签应用于先前上传的资产，请运行
         <a href={AppRoute.ADMIN_JOBS} class="text-immich-primary dark:text-immich-dark-primary">
-          Storage Migration Job</a
+          存储迁移任务</a
         >
       </p>
     </div>
@@ -144,7 +144,7 @@
         >Reset password</Button
       >
     {/if}
-    <Button type="submit" fullwidth form="edit-user-form">Confirm</Button>
+    <Button type="submit" fullwidth form="edit-user-form">确认</Button>
   </svelte:fragment>
 </FullScreenModal>
 

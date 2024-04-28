@@ -82,7 +82,7 @@
 
     <div class="mb-6 mt-2">
       <div>
-        <p class="mb-4 font-medium dark:text-immich-dark-fg">Albums</p>
+        <p class="mb-4 font-medium dark:text-immich-dark-fg">影集</p>
       </div>
 
       <div>

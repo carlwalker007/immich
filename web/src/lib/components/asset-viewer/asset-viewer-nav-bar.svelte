@@ -206,19 +206,19 @@
         {#if isShowAssetOptions}
           <ContextMenu {...contextMenuPosition} direction="left">
             {#if showSlideshow}
-              <MenuOption icon={mdiPresentationPlay} on:click={() => onMenuClick('playSlideShow')} text="Slideshow" />
+              <MenuOption icon={mdiPresentationPlay} on:click={() => onMenuClick('playSlideShow')} text="播放幻灯片" />
             {/if}
             {#if showDownloadButton}
-              <MenuOption icon={mdiFolderDownloadOutline} on:click={() => onMenuClick('download')} text="Download" />
+              <MenuOption icon={mdiFolderDownloadOutline} on:click={() => onMenuClick('download')} text="下载" />
             {/if}
             {#if asset.isTrashed}
               <MenuOption icon={mdiHistory} on:click={() => onMenuClick('restoreAsset')} text="Restore" />
             {:else}
-              <MenuOption icon={mdiImageAlbum} on:click={() => onMenuClick('addToAlbum')} text="Add to album" />
+              <MenuOption icon={mdiImageAlbum} on:click={() => onMenuClick('addToAlbum')} text="添加到影集" />
               <MenuOption
                 icon={mdiShareVariantOutline}
                 on:click={() => onMenuClick('addToSharedAlbum')}
-                text="Add to shared album"
+                text="添加到共享影集"
               />
             {/if}
 
@@ -228,7 +228,7 @@
               {/if}
               {#if album}
                 <MenuOption
-                  text="Set as album cover"
+                  text="设置为影集封面"
                   icon={mdiImageOutline}
                   on:click={() => onMenuClick('setAsAlbumCover')}
                 />
@@ -237,13 +237,13 @@
                 <MenuOption
                   icon={mdiAccountCircleOutline}
                   on:click={() => onMenuClick('asProfileImage')}
-                  text="Set as profile picture"
+                  text="设置为个人资料图片"
                 />
               {/if}
               <MenuOption
                 on:click={() => dispatch('toggleArchive')}
                 icon={asset.isArchived ? mdiArchiveArrowUpOutline : mdiArchiveArrowDownOutline}
-                text={asset.isArchived ? 'Unarchive' : 'Archive'}
+                text={asset.isArchived ? '取消归档' : '归档'}
               />
               <hr />
               <MenuOption

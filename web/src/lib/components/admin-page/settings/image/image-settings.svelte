@@ -25,8 +25,8 @@
     <form autocomplete="off" on:submit|preventDefault>
       <div class="ml-4 mt-4 flex flex-col gap-4">
         <SettingSelect
-          label="THUMBNAIL FORMAT"
-          desc="WebP produces smaller files than JPEG, but is slower to encode."
+          label="缩略图格式"
+          desc="WebP 生成的文件比 JPEG 更小，但编码速度较慢。"
           bind:value={config.image.thumbnailFormat}
           options={[
             { value: ImageFormat.Jpeg, text: 'JPEG' },
@@ -38,8 +38,8 @@
         />
 
         <SettingSelect
-          label="THUMBNAIL RESOLUTION"
-          desc="Used when viewing groups of photos (main timeline, album view, etc.). Higher resolutions can preserve more detail but take longer to encode, have larger file sizes, and can reduce app responsiveness."
+          label="缩略图分辨率"
+          desc="用于查看一组照片（主时间轴、相册视图等）。更高的分辨率可以保留更多细节，但编码时间更长，文件大小更大，可能会降低应用程序的响应速度。"
           number
           bind:value={config.image.thumbnailSize}
           options={[
@@ -55,8 +55,8 @@
         />
 
         <SettingSelect
-          label="PREVIEW FORMAT"
-          desc="WebP produces smaller files than JPEG, but is slower to encode."
+          label="预览格式"
+          desc="WebP 生成的文件比 JPEG 更小，但编码速度较慢。"
           bind:value={config.image.previewFormat}
           options={[
             { value: ImageFormat.Jpeg, text: 'JPEG' },
@@ -68,8 +68,8 @@
         />
 
         <SettingSelect
-          label="PREVIEW RESOLUTION"
-          desc="Used when viewing a single photo and for machine learning. Higher resolutions can preserve more detail but take longer to encode, have larger file sizes, and can reduce app responsiveness."
+          label="预览分辨率"
+          desc="用于查看单个照片和机器学习时。更高的分辨率可以保留更多细节，但编码时间更长，文件大小更大，可能会降低应用程序的响应速度。"
           number
           bind:value={config.image.previewSize}
           options={[
@@ -85,8 +85,8 @@
 
         <SettingInputField
           inputType={SettingInputFieldType.NUMBER}
-          label="QUALITY"
-          desc="Image quality from 1-100. Higher is better for quality but produces larger files."
+          label="质量"
+          desc="图像质量从1到100。质量越高，文件越大。"
           bind:value={config.image.quality}
           isEdited={config.image.quality !== savedConfig.image.quality}
           {disabled}
@@ -94,8 +94,8 @@
 
         <SettingSwitch
           id="prefer-wide-gamut"
-          title="PREFER WIDE GAMUT"
-          subtitle="Use Display P3 for thumbnails. This better preserves the vibrance of images with wide colorspaces, but images may appear differently on old devices with an old browser version. sRGB images are kept as sRGB to avoid color shifts."
+          title="优先选择广色域"
+          subtitle="使用Display P3来生成缩略图。这样可以更好地保留具有广色域的图像的鲜艳度，但在旧设备和旧浏览器版本上，图像可能会显示不同。sRGB 图像保持为 sRGB，以避免颜色偏移。"
           checked={config.image.colorspace === Colorspace.P3}
           on:toggle={(e) => (config.image.colorspace = e.detail ? Colorspace.P3 : Colorspace.Srgb)}
           isEdited={config.image.colorspace !== savedConfig.image.colorspace}
@@ -104,8 +104,8 @@
 
         <SettingSwitch
           id="prefer-embedded"
-          title="PREFER EMBEDDED PREVIEW"
-          subtitle="Use embedded previews in RAW photos as the input to image processing when available. This can produce more accurate colors for some images, but the quality of the preview is camera-dependent and the image may have more compression artifacts."
+          title="优先嵌入式预览"
+          subtitle="当可用时，将 RAW 照片的嵌入式预览用作图像处理的输入。这可能会为某些图像产生更准确的颜色，但预览的质量取决于相机，并且图像可能具有更多压缩缺陷。"
           checked={config.image.extractEmbedded}
           on:toggle={() => (config.image.extractEmbedded = !config.image.extractEmbedded)}
           isEdited={config.image.extractEmbedded !== savedConfig.image.extractEmbedded}

@@ -9,7 +9,7 @@ export const load = (async () => {
   return {
     stats,
     meta: {
-      title: 'Server Stats',
+      title: '服务器统计信息',
     },
   };
 }) satisfies PageLoad;

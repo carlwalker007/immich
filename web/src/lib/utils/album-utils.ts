@@ -53,37 +53,37 @@ export interface AlbumSortOptionMetadata {
 export const sortOptionsMetadata: AlbumSortOptionMetadata[] = [
   {
     id: AlbumSortBy.Title,
-    text: 'Title',
+    text: '标题',
     defaultOrder: SortOrder.Asc,
     columnStyle: 'text-left w-8/12 sm:w-4/12 md:w-4/12 md:w-4/12 xl:w-[30%] 2xl:w-[40%]',
   },
   {
     id: AlbumSortBy.ItemCount,
-    text: 'Number of items',
+    text: '项目数量',
     defaultOrder: SortOrder.Desc,
     columnStyle: 'text-center w-4/12 m:w-2/12 md:w-2/12 xl:w-[15%] 2xl:w-[12%]',
   },
   {
     id: AlbumSortBy.DateModified,
-    text: 'Date modified',
+    text: '修改日期',
     defaultOrder: SortOrder.Desc,
     columnStyle: 'text-center hidden sm:block w-3/12 xl:w-[15%] 2xl:w-[12%]',
   },
   {
     id: AlbumSortBy.DateCreated,
-    text: 'Date created',
+    text: '创建日期',
     defaultOrder: SortOrder.Desc,
     columnStyle: 'text-center hidden sm:block w-3/12 xl:w-[15%] 2xl:w-[12%]',
   },
   {
     id: AlbumSortBy.MostRecentPhoto,
-    text: 'Most recent photo',
+    text: '最近的照片',
     defaultOrder: SortOrder.Desc,
     columnStyle: 'text-center hidden xl:block xl:w-[15%] 2xl:w-[12%]',
   },
   {
     id: AlbumSortBy.OldestPhoto,
-    text: 'Oldest photo',
+    text: '最久的照片',
     defaultOrder: SortOrder.Desc,
     columnStyle: 'text-center hidden xl:block xl:w-[15%] 2xl:w-[12%]',
   },
@@ -116,13 +116,13 @@ export interface AlbumGroupOptionMetadata {
 export const groupOptionsMetadata: AlbumGroupOptionMetadata[] = [
   {
     id: AlbumGroupBy.None,
-    text: 'No grouping',
+    text: '不分组',
     defaultOrder: SortOrder.Asc,
     isDisabled: () => false,
   },
   {
     id: AlbumGroupBy.Year,
-    text: 'Group by year',
+    text: '按年份分组',
     defaultOrder: SortOrder.Desc,
     isDisabled() {
       const disabledWithSortOptions: string[] = [AlbumSortBy.DateCreated, AlbumSortBy.DateModified];
@@ -131,7 +131,7 @@ export const groupOptionsMetadata: AlbumGroupOptionMetadata[] = [
   },
   {
     id: AlbumGroupBy.Owner,
-    text: 'Group by owner',
+    text: '按所有者分组',
     defaultOrder: SortOrder.Asc,
     isDisabled: () => false,
   },

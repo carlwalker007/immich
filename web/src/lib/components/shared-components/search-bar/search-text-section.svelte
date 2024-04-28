@@ -21,20 +21,20 @@
 </script>
 
 <fieldset>
-  <legend class="immich-form-label">Search type</legend>
+  <legend class="immich-form-label">搜索类型</legend>
   <div class="flex flex-wrap gap-x-5 gap-y-2 mt-1 mb-2">
     <RadioButton
       name="query-type"
       id="context-radio"
       bind:group={selectedOption}
-      label="Context"
+      label="上下文"
       value={TextSearchOptions.Context}
     />
     <RadioButton
       name="query-type"
       id="file-name-radio"
       bind:group={selectedOption}
-      label="File name or extension"
+      label="文件名或扩展名"
       value={TextSearchOptions.Filename}
     />
   </div>

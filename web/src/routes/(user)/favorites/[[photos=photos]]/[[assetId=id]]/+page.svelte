@@ -50,6 +50,6 @@
 
 <UserPageLayout hideNavbar={$isMultiSelectState} title={data.meta.title} scrollbar={false}>
   <AssetGrid {assetStore} {assetInteractionStore} removeAction={AssetAction.UNFAVORITE}>
-    <EmptyPlaceholder text="Add favorites to quickly find your best pictures and videos" slot="empty" />
+    <EmptyPlaceholder text="添加收藏功能，以快速找到你最喜欢的图片和视频" slot="empty" />
   </AssetGrid>
 </UserPageLayout>

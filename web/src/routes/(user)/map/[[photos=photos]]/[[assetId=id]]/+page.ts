@@ -9,7 +9,7 @@ export const load = (async ({ params }) => {
   return {
     asset,
     meta: {
-      title: 'Map',
+      title: '地图',
     },
   };
 }) satisfies PageLoad;

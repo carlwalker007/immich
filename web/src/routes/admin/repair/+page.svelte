@@ -214,8 +214,8 @@
               <tr class="flex w-full place-items-center p-2 md:p-5">
                 <th class="w-full text-sm place-items-center font-medium flex justify-between" colspan="2">
                   <div class="px-3">
-                    <p>MATCHES {matches.length > 0 ? `(${matches.length})` : ''}</p>
-                    <p class="text-gray-600 dark:text-gray-300 mt-1">These files are matched by their checksums</p>
+                    <p>匹配 {matches.length > 0 ? `(${matches.length})` : ''}</p>
+                    <p class="text-gray-600 dark:text-gray-300 mt-1">这些文件是通过它们的校验和进行匹配的</p>
                   </div>
                 </th>
               </tr>
@@ -248,9 +248,9 @@
               <tr class="flex w-full place-items-center p-1 md:p-5">
                 <th class="w-full text-sm font-medium justify-between place-items-center flex" colspan="2">
                   <div class="px-3">
-                    <p>OFFLINE PATHS {orphans.length > 0 ? `(${orphans.length})` : ''}</p>
+                    <p>离线路径 {orphans.length > 0 ? `(${orphans.length})` : ''}</p>
                     <p class="text-gray-600 dark:text-gray-300 mt-1">
-                      These results may be due to manual deletion of files in the default upload library
+                      这些结果可能是由于在默认上传库中手动删除文件所致
                     </p>
                   </div>
                 </th>
@@ -286,10 +286,9 @@
               <tr class="flex w-full place-items-center p-2 md:p-5">
                 <th class="w-full text-sm font-medium place-items-center flex justify-between" colspan="2">
                   <div class="px-3">
-                    <p>UNTRACKED FILES {extras.length > 0 ? `(${extras.length})` : ''}</p>
+                    <p>未跟踪的文件 {extras.length > 0 ? `(${extras.length})` : ''}</p>
                     <p class="text-gray-600 dark:text-gray-300 mt-1">
-                      These files are not tracked by the application. They can be the results of failed moves,
-                      interrupted uploads, or left behind due to a bug
+                      这些文件未被应用程序跟踪。它们可能是由于移动失败、上传中断或由于错误而被遗留下来的结果
                     </p>
                   </div>
                 </th>

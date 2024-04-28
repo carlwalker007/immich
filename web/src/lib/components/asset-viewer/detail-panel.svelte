@@ -176,7 +176,7 @@
       <Icon path={mdiClose} size="24" />
     </button>
 
-    <p class="text-lg text-immich-fg dark:text-immich-dark-fg">Info</p>
+    <p class="text-lg text-immich-fg dark:text-immich-dark-fg">信息</p>
   </div>
 
   {#if asset.isOffline}
@@ -201,7 +201,7 @@
           bind:this={textArea}
           class="max-h-[500px]
       w-full resize-none border-b border-gray-500 bg-transparent text-base text-black outline-none transition-all focus:border-b-2 focus:border-immich-primary disabled:border-none dark:text-white dark:focus:border-immich-dark-primary immich-scrollbar"
-          placeholder={isOwner ? 'Add a description' : ''}
+          placeholder={isOwner ? '添加说明' : ''}
           on:focusout={handleFocusOut}
           on:input={() => autoGrowHeight(textArea)}
           bind:value={description}
@@ -320,7 +320,7 @@
       </div>
     {:else}
       <div class="flex h-10 w-full items-center justify-between text-sm">
-        <h2>DETAILS</h2>
+        <h2>详情</h2>
       </div>
     {/if}
 

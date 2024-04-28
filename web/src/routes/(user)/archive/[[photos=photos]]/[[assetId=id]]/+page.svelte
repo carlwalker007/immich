@@ -45,6 +45,6 @@
 
 <UserPageLayout hideNavbar={$isMultiSelectState} title={data.meta.title} scrollbar={false}>
   <AssetGrid {assetStore} {assetInteractionStore} removeAction={AssetAction.UNARCHIVE}>
-    <EmptyPlaceholder text="Archive photos and videos to hide them from your Photos view" slot="empty" />
+    <EmptyPlaceholder text="将照片和视频归档以将它们从您的照片视图中隐藏" slot="empty" />
   </AssetGrid>
 </UserPageLayout>

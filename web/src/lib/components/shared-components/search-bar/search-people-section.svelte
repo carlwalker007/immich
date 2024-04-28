@@ -55,8 +55,8 @@
 
     <div id="people-selection" class="-mb-4">
       <div class="flex items-center w-full justify-between gap-6">
-        <p class="immich-form-label py-3">PEOPLE</p>
-        <SearchBar bind:name placeholder="Filter people" isSearching={false} />
+        <p class="immich-form-label py-3">人员</p>
+        <SearchBar bind:name placeholder="过滤人员" isSearching={false} />
       </div>
 
       <div class="flex -mx-1 max-h-64 gap-1 mt-2 flex-wrap overflow-y-auto immich-scrollbar">
@@ -95,7 +95,7 @@
               Collapse
             {:else}
               <span><Icon path={mdiArrowRight} ariaHidden /></span>
-              See all people
+              查看全部人员
             {/if}
           </Button>
         </div>

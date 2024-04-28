@@ -8,7 +8,7 @@ export const load = (async ({ params }) => {
   return {
     asset,
     meta: {
-      title: 'Trash',
+      title: '回收站',
     },
   };
 }) satisfies PageLoad;

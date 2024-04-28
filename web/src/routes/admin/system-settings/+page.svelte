@@ -82,92 +82,92 @@
   }> = [
     {
       item: ImageSettings,
-      title: 'Image Settings',
-      subtitle: 'Manage the quality and resolution of generated images',
+      title: '图像设置',
+      subtitle: '管理生成图像的质量和分辨率',
       key: 'image',
     },
     {
       item: JobSettings,
-      title: 'Job Settings',
-      subtitle: 'Manage job concurrency',
+      title: '任务设置',
+      subtitle: '管理任务并发',
       key: 'job',
     },
     {
       item: LibrarySettings,
-      title: 'External Library',
-      subtitle: 'Manage external library settings',
+      title: '外部库',
+      subtitle: '管理外部库设置',
       key: 'external-library',
     },
     {
       item: LoggingSettings,
-      title: 'Logging',
-      subtitle: 'Manage log settings',
+      title: '日志记录',
+      subtitle: '管理日志设置',
       key: 'logging',
     },
     {
       item: MachineLearningSettings,
-      title: 'Machine Learning Settings',
-      subtitle: 'Manage machine learning features and settings',
+      title: '机器学习设置',
+      subtitle: '管理机器学习功能和设置',
       key: 'machine-learning',
     },
     {
       item: MapSettings,
-      title: 'Map & GPS Settings',
-      subtitle: 'Manage map related features and setting',
+      title: '地图和GPS设置',
+      subtitle: '管理与地图相关的功能和设置',
       key: 'location',
     },
     {
       item: OAuthSettings,
-      title: 'OAuth Authentication',
-      subtitle: 'Manage the login with OAuth settings',
+      title: 'OAuth 认证',
+      subtitle: '管理使用 OAuth 登录的设置',
       key: 'oauth',
     },
     {
       item: PasswordLoginSettings,
-      title: 'Password Authentication',
-      subtitle: 'Manage the login with password settings',
+      title: '密码认证',
+      subtitle: '管理使用密码登录的设置',
       key: 'password',
     },
     {
       item: ServerSettings,
-      title: 'Server Settings',
-      subtitle: 'Manage server settings',
+      title: '服务器设置',
+      subtitle: '管理服务器设置',
       key: 'server',
     },
     {
       item: StorageTemplateSettings,
-      title: 'Storage Template',
-      subtitle: 'Manage the folder structure and file name of the upload asset',
+      title: '存储模板',
+      subtitle: '管理上传资产的文件夹结构和文件名',
       key: 'storage-template',
     },
     {
       item: ThemeSettings,
-      title: 'Theme Settings',
-      subtitle: 'Manage customization of the Immich web interface',
+      title: '主题设置',
+      subtitle: '管理 Immich 网页界面的定制',
       key: 'theme',
     },
     {
       item: TrashSettings,
-      title: 'Trash Settings',
-      subtitle: 'Manage trash settings',
+      title: '垃圾桶设置',
+      subtitle: '管理垃圾桶设置',
       key: 'trash',
     },
     {
       item: UserSettings,
-      title: 'User Settings',
-      subtitle: 'Manage user settings',
+      title: '用户设置',
+      subtitle: '管理用户设置',
       key: 'user-settings',
     },
     {
       item: NewVersionCheckSettings,
-      title: 'Version Check',
-      subtitle: 'Enable/disable the new version notification',
+      title: '版本检查',
+      subtitle: '启用/禁用新版本通知',
       key: 'version-check',
     },
     {
       item: FFmpegSettings,
-      title: 'Video Transcoding Settings',
-      subtitle: 'Manage the resolution and encoding information of the video files',
+      title: '视频转码设置',
+      subtitle: '管理视频文件的分辨率和编码信息',
       key: 'video-transcoding',
     },
   ];
@@ -190,19 +190,19 @@
       <LinkButton on:click={() => copyToClipboard(JSON.stringify(config, null, 2))}>
         <div class="flex place-items-center gap-2 text-sm">
           <Icon path={mdiContentCopy} size="18" />
-          Copy to Clipboard
+          复制到剪贴板
         </div>
       </LinkButton>
       <LinkButton on:click={() => downloadConfig()}>
         <div class="flex place-items-center gap-2 text-sm">
           <Icon path={mdiDownload} size="18" />
-          Export as JSON
+          导出为 JSON
         </div>
       </LinkButton>
       <LinkButton on:click={() => inputElement?.click()}>
         <div class="flex place-items-center gap-2 text-sm">
           <Icon path={mdiUpload} size="18" />
-          Import from JSON
+          从 JSON 导入
         </div>
       </LinkButton>
     </div>

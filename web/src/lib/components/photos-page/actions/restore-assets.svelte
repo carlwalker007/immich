@@ -41,5 +41,5 @@
 
 <Button disabled={loading} size="sm" color="transparent-gray" shadow={false} rounded="lg" on:click={handleRestore}>
   <Icon path={mdiHistory} size="24" />
-  <span class="ml-2">Restore</span>
+  <span class="ml-2">恢复</span>
 </Button>

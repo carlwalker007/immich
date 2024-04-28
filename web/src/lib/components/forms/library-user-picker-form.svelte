@@ -29,17 +29,17 @@
 
 <FullScreenModal
   id="select-library-owner-modal"
-  title="Select library owner"
+  title="选择库的归属者"
   icon={mdiFolderSync}
   onClose={handleCancel}
 >
   <form on:submit|preventDefault={() => handleSubmit()} autocomplete="off" id="select-library-owner-form">
-    <p class="p-5 text-sm">NOTE: This cannot be changed later!</p>
+    <p class="p-5 text-sm">NOTE: 此操作后续无法修改!</p>
 
     <SettingSelect bind:value={ownerId} options={userOptions} name="user" />
   </form>
   <svelte:fragment slot="sticky-bottom">
-    <Button color="gray" fullwidth on:click={() => handleCancel()}>Cancel</Button>
-    <Button type="submit" fullwidth form="select-library-owner-form">Create</Button>
+    <Button color="gray" fullwidth on:click={() => handleCancel()}>取消</Button>
+    <Button type="submit" fullwidth form="select-library-owner-form">创建</Button>
   </svelte:fragment>
 </FullScreenModal>

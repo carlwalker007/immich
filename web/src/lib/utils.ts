@@ -112,18 +112,18 @@ export const downloadRequest = <TBody = unknown>(options: DownloadRequestOptions
 
 export const getJobName = (jobName: JobName) => {
   const names: Record<JobName, string> = {
-    [JobName.ThumbnailGeneration]: 'Generate Thumbnails',
-    [JobName.MetadataExtraction]: 'Extract Metadata',
-    [JobName.Sidecar]: 'Sidecar Metadata',
-    [JobName.SmartSearch]: 'Smart Search',
-    [JobName.FaceDetection]: 'Face Detection',
-    [JobName.FacialRecognition]: 'Facial Recognition',
-    [JobName.VideoConversion]: 'Transcode Videos',
-    [JobName.StorageTemplateMigration]: 'Storage Template Migration',
-    [JobName.Migration]: 'Migration',
-    [JobName.BackgroundTask]: 'Background Tasks',
-    [JobName.Search]: 'Search',
-    [JobName.Library]: 'Library',
+    [JobName.ThumbnailGeneration]: '生成缩略图',
+    [JobName.MetadataExtraction]: '提取元数据',
+    [JobName.Sidecar]: '辅助元数据',
+    [JobName.SmartSearch]: '智能搜索',
+    [JobName.FaceDetection]: '面部检测',
+    [JobName.FacialRecognition]: '面部识别',
+    [JobName.VideoConversion]: '转码视频',
+    [JobName.StorageTemplateMigration]: '存储模板迁移',
+    [JobName.Migration]: '迁移',
+    [JobName.BackgroundTask]: '后台任务',
+    [JobName.Search]: '搜索',
+    [JobName.Library]: '库',
   };
 
   return names[jobName];

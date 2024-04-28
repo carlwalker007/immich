@@ -259,7 +259,7 @@
         </tbody>
       </table>
 
-      <Button size="sm" on:click={() => (shouldShowCreateUserForm = true)}>Create user</Button>
+      <Button size="sm" on:click={() => (shouldShowCreateUserForm = true)}>创建用户</Button>
     </section>
   </section>
 </UserPageLayout>

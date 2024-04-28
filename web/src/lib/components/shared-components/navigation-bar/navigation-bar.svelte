@@ -74,7 +74,7 @@
             <LinkButton on:click={() => dispatch('uploadClicked')}>
               <div class="flex gap-2">
                 <Icon path={mdiTrayArrowUp} size="1.5em" />
-                <span class="hidden md:block">Upload</span>
+                <span class="hidden md:block">上传</span>
               </div>
             </LinkButton>
           </div>
@@ -96,7 +96,7 @@
                     ? 'item text-immich-primary underline dark:text-immich-dark-primary'
                     : ''}
                 >
-                  Administration
+                  管理
                 </span>
               </div>
               <div class="block sm:hidden" aria-hidden="true">

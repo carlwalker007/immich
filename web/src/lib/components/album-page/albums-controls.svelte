@@ -107,7 +107,7 @@
 <LinkButton on:click={() => createAlbumAndRedirect()}>
   <div class="flex place-items-center gap-2 text-sm">
     <Icon path={mdiPlusBoxOutline} size="18" />
-    <p class="hidden md:block">Create album</p>
+    <p class="hidden md:block">创建影集</p>
   </div>
 </LinkButton>
 
@@ -165,10 +165,10 @@
   <div class="flex place-items-center gap-2 text-sm">
     {#if $albumViewSettings.view === AlbumViewMode.List}
       <Icon path={mdiViewGridOutline} size="18" />
-      <p class="hidden md:block">Covers</p>
+      <p class="hidden md:block">封面</p>
     {:else}
       <Icon path={mdiFormatListBulletedSquare} size="18" />
-      <p class="hidden md:block">List</p>
+      <p class="hidden md:block">列表</p>
     {/if}
   </div>
 </LinkButton>

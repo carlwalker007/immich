@@ -51,7 +51,7 @@
       <div class="flex items-center gap-4 text-xl font-semibold text-immich-primary dark:text-immich-dark-primary">
         <span class="flex items-center gap-2">
           <Icon path={icon} size="1.25em" class="hidden shrink-0 sm:block" />
-          {title.toUpperCase()}
+          {title}
         </span>
         <div class="flex gap-2">
           {#if jobCounts.failed > 0}
@@ -158,7 +158,7 @@
         color="light-gray"
         on:click={() => dispatch('command', { command: JobCommand.Start, force: false })}
       >
-        <Icon path={mdiPlay} size="48" /> START
+        <Icon path={mdiPlay} size="48" /> 开始
       </JobTileButton>
     {/if}
   </div>

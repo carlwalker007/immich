@@ -9,7 +9,7 @@ export const load = (async ({ params }) => {
   return {
     asset,
     meta: {
-      title: 'Archive',
+      title: '归档',
     },
   };
 }) satisfies PageLoad;

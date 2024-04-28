@@ -60,39 +60,39 @@
     [JobName.ThumbnailGeneration]: {
       icon: mdiFileJpgBox,
       title: getJobName(JobName.ThumbnailGeneration),
-      subtitle: 'Generate large, small and blurred thumbnails for each asset, as well as thumbnails for each person',
+      subtitle: '为每个资产生成大、小和模糊的缩略图，以及每个人的缩略图',
     },
     [JobName.MetadataExtraction]: {
       icon: mdiTable,
       title: getJobName(JobName.MetadataExtraction),
-      subtitle: 'Extract metadata information from each asset, such as GPS and resolution',
+      subtitle: '从每个资产中提取元数据信息，例如 GPS 和分辨率',
     },
     [JobName.Library]: {
       icon: mdiLibraryShelves,
       title: getJobName(JobName.Library),
-      subtitle: 'Perform library tasks',
-      allText: 'ALL',
-      missingText: 'REFRESH',
+      subtitle: '执行库任务',
+      allText: '全部',
+      missingText: '刷新',
     },
     [JobName.Sidecar]: {
       title: getJobName(JobName.Sidecar),
       icon: mdiFileXmlBox,
-      subtitle: 'Discover or synchronize sidecar metadata from the filesystem',
-      allText: 'SYNC',
-      missingText: 'DISCOVER',
+      subtitle: '发现或同步来自文件系统的辅助元数据',
+      allText: '同步',
+      missingText: '发现',
       disabled: !$featureFlags.sidecar,
     },
     [JobName.SmartSearch]: {
       icon: mdiImageSearch,
       title: getJobName(JobName.SmartSearch),
-      subtitle: 'Run machine learning on assets to support smart search',
+      subtitle: '对资产运行机器学习，以支持智能搜索',
       disabled: !$featureFlags.smartSearch,
     },
     [JobName.FaceDetection]: {
       icon: mdiFaceRecognition,
       title: getJobName(JobName.FaceDetection),
       subtitle:
-        'Detect the faces in assets using machine learning. For videos, only the thumbnail is considered. "All" (re-)processes all assets. "Missing" queues assets that haven\'t been processed yet. Detected faces will be queued for Facial Recognition after Face Detection is complete, grouping them into existing or new people.',
+        '使用机器学习检测资产中的人脸。对于视频，仅考虑缩略图。 "全部"（重新）处理所有资产。 "缺失" 将未处理的资产加入队列。在完成人脸检测后，检测到的人脸将被排队进行面部识别，并将它们分组到现有或新的人物中。',
       handleCommand: handleConfirmCommand,
       disabled: !$featureFlags.facialRecognition,
     },
@@ -100,14 +100,14 @@
       icon: mdiTagFaces,
       title: getJobName(JobName.FacialRecognition),
       subtitle:
-        'Group detected faces into people. This step runs after Face Detection is complete. "All" (re-)clusters all faces. "Missing" queues faces that don\'t have a person assigned.',
+        '将检测到的人脸分组到人物中。此步骤在人脸检测完成后运行。 "全部"（重新）对所有人脸进行聚类。 "缺失" 将未分配人物的人脸加入队列。',
       handleCommand: handleConfirmCommand,
       disabled: !$featureFlags.facialRecognition,
     },
     [JobName.VideoConversion]: {
       icon: mdiVideo,
       title: getJobName(JobName.VideoConversion),
-      subtitle: 'Transcode videos for wider compatibility with browsers and devices',
+      subtitle: '为了更广泛地兼容浏览器和设备，对视频进行转码',
     },
     [JobName.StorageTemplateMigration]: {
       icon: mdiFolderMove,
@@ -118,7 +118,7 @@
     [JobName.Migration]: {
       icon: mdiFolderMove,
       title: getJobName(JobName.Migration),
-      subtitle: 'Migrate thumbnails for assets and faces to the latest folder structure',
+      subtitle: '将资产和人脸的缩略图迁移到最新的文件夹结构',
       allowForceCommand: false,
     },
   };
@@ -162,8 +162,8 @@
       {title}
       {disabled}
       {subtitle}
-      allText={allText || 'ALL'}
-      missingText={missingText || 'MISSING'}
+      allText={allText || '全部'}
+      missingText={missingText || '缺失'}
       {allowForceCommand}
       {jobCounts}
       {queueStatus}

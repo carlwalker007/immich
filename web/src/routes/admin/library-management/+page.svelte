@@ -330,7 +330,7 @@
     <LinkButton on:click={() => (toCreateLibrary = true)}>
       <div class="flex gap-1 text-sm">
         <Icon path={mdiPlusBoxOutline} size="18" />
-        <span>Create Library</span>
+        <span>创建库</span>
       </div>
     </LinkButton>
   </div>
@@ -458,7 +458,7 @@
         <!-- Empty message -->
       {:else}
         <EmptyPlaceholder
-          text="Create an external library to view your photos and videos"
+          text="创建一个外部库以查看您的照片和视频"
           onClick={() => (toCreateLibrary = true)}
         />
       {/if}

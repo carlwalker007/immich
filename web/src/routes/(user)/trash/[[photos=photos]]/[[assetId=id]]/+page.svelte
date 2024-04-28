@@ -84,20 +84,20 @@
       <LinkButton on:click={handleRestoreTrash}>
         <div class="flex place-items-center gap-2 text-sm">
           <Icon path={mdiHistory} size="18" />
-          Restore all
+          恢复所有
         </div>
       </LinkButton>
       <LinkButton on:click={() => (isShowEmptyConfirmation = true)}>
         <div class="flex place-items-center gap-2 text-sm">
           <Icon path={mdiDeleteOutline} size="18" />
-          Empty trash
+          清空回收站
         </div>
       </LinkButton>
     </div>
 
     <AssetGrid {assetStore} {assetInteractionStore}>
       <p class="font-medium text-gray-500/60 dark:text-gray-300/60 p-4">
-        Trashed items will be permanently deleted after {$serverConfig.trashDays} days.
+        已删除的项目将在 {$serverConfig.trashDays} 天后永久删除.
       </p>
       <EmptyPlaceholder text="Trashed photos and videos will show up here." src={empty3Url} slot="empty" />
     </AssetGrid>

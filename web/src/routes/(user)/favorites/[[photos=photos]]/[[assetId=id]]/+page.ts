@@ -9,7 +9,7 @@ export const load = (async ({ params }) => {
   return {
     asset,
     meta: {
-      title: 'Favorites',
+      title: '收藏夹',
     },
   };
 }) satisfies PageLoad;

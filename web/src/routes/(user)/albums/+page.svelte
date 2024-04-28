@@ -29,7 +29,7 @@
       />
     </div>
     <div class="w-60">
-      <SearchBar placeholder="Search albums" bind:name={searchQuery} isSearching={false} />
+      <SearchBar placeholder="搜索影集" bind:name={searchQuery} isSearching={false} />
     </div>
   </div>
 

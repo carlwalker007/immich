@@ -71,38 +71,38 @@
   }
 </script>
 
-<FullScreenModal id="create-new-user-modal" title="Create new user" showLogo {onClose}>
+<FullScreenModal id="create-new-user-modal" title="创建新用户" showLogo {onClose}>
   <form on:submit|preventDefault={registerUser} autocomplete="off" id="create-new-user-form">
     <div class="my-4 flex flex-col gap-2">
-      <label class="immich-form-label" for="email">Email</label>
+      <label class="immich-form-label" for="email">邮箱</label>
       <input class="immich-form-input" id="email" bind:value={email} type="email" required />
     </div>
 
     <div class="my-4 flex flex-col gap-2">
-      <label class="immich-form-label" for="password">Password</label>
+      <label class="immich-form-label" for="password">密码</label>
       <PasswordField id="password" bind:password autocomplete="new-password" />
     </div>
 
     <div class="my-4 flex flex-col gap-2">
-      <label class="immich-form-label" for="confirmPassword">Confirm Password</label>
+      <label class="immich-form-label" for="confirmPassword">确认密码</label>
       <PasswordField id="confirmPassword" bind:password={confirmPassword} autocomplete="new-password" />
     </div>
 
     <div class="my-4 flex place-items-center justify-between gap-2">
       <label class="text-sm dark:text-immich-dark-fg" for="require-password-change">
-        Require user to change password on first login
+        要求用户在首次登录时更改密码
       </label>
       <Slider id="require-password-change" bind:checked={shouldChangePassword} />
     </div>
 
     <div class="my-4 flex flex-col gap-2">
-      <label class="immich-form-label" for="name">Name</label>
+      <label class="immich-form-label" for="name">名字</label>
       <input class="immich-form-input" id="name" bind:value={name} type="text" required />
     </div>
 
     <div class="my-4 flex flex-col gap-2">
       <label class="flex items-center gap-2 immich-form-label" for="quotaSize">
-        Quota Size (GiB)
+        空间配额大小 (GiB)
         {#if quotaSizeWarning}
           <p class="text-red-400 text-sm">You set a quota higher than the disk size</p>
         {/if}
@@ -119,7 +119,7 @@
     {/if}
   </form>
   <svelte:fragment slot="sticky-bottom">
-    <Button color="gray" fullwidth on:click={() => dispatch('cancel')}>Cancel</Button>
-    <Button type="submit" disabled={isCreatingUser} fullwidth form="create-new-user-form">Create</Button>
+    <Button color="gray" fullwidth on:click={() => dispatch('cancel')}>取消</Button>
+    <Button type="submit" disabled={isCreatingUser} fullwidth form="create-new-user-form">创建</Button>
   </svelte:fragment>
 </FullScreenModal>
