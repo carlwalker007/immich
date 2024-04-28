@@ -47,13 +47,13 @@
 
       <SettingAccordion
         key="smart-search"
-        title="Smart Search"
-        subtitle="Search for images semantically using CLIP embeddings"
+        title="智能搜索"
+        subtitle="使用 CLIP 嵌入语义搜索图像"
       >
         <div class="ml-4 mt-4 flex flex-col gap-4">
           <SettingSwitch
             id="enable-clip"
-            title="ENABLED"
+            title="启用"
             subtitle="If disabled, images will not be encoded for smart search."
             bind:checked={config.machineLearning.clip.enabled}
             disabled={disabled || !config.machineLearning.enabled}
@@ -63,7 +63,7 @@
 
           <SettingInputField
             inputType={SettingInputFieldType.TEXT}
-            label="CLIP MODEL"
+            label="CLIP 模型"
             bind:value={config.machineLearning.clip.modelName}
             required={true}
             disabled={disabled || !config.machineLearning.enabled || !config.machineLearning.clip.enabled}
@@ -79,8 +79,8 @@
 
       <SettingAccordion
         key="facial-recognition"
-        title="Facial Recognition"
-        subtitle="Detect, recognize and group faces in images"
+        title="面部识别"
+        subtitle="检测、识别和分组图像中的人脸"
       >
         <div class="ml-4 mt-4 flex flex-col gap-4">
           <SettingSwitch

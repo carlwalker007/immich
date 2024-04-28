@@ -38,9 +38,9 @@
         <div class="ml-4 mt-4 flex flex-col gap-4">
           <SettingSwitch
             id="watch-filesystem"
-            title="Watch filesystem"
+            title="监视文件系统"
             {disabled}
-            subtitle="Watch external libraries for file changes"
+            subtitle="监视外部库的文件更改"
             bind:checked={config.library.watch.enabled}
           />
         </div>
@@ -58,8 +58,8 @@
 
     <SettingAccordion
       key="library-scanning"
-      title="Periodic Scanning"
-      subtitle="Configure periodic library scanning"
+      title="定期扫描"
+      subtitle="配置定期库扫描"
       isOpen
     >
       <form autocomplete="off" on:submit|preventDefault>
@@ -73,7 +73,7 @@
           />
 
           <div class="flex flex-col my-2 dark:text-immich-dark-fg">
-            <label class="text-sm" for="expression-select">Cron Expression Presets</label>
+            <label class="text-sm" for="expression-select">Cron 表达式预设</label>
             <select
               class="p-2 mt-2 text-sm rounded-lg bg-slate-200 hover:cursor-pointer dark:bg-gray-600"
               disabled={disabled || !config.library.scan.enabled}
@@ -91,13 +91,13 @@
             inputType={SettingInputFieldType.TEXT}
             required={true}
             disabled={disabled || !config.library.scan.enabled}
-            label="Cron Expression"
+            label="Cron 表达式"
             bind:value={config.library.scan.cronExpression}
             isEdited={config.library.scan.cronExpression !== savedConfig.library.scan.cronExpression}
           >
             <svelte:fragment slot="desc">
               <p class="text-sm dark:text-immich-dark-fg">
-                Set the scanning interval using the cron format. For more information please refer to e.g. <a
+                使用 cron 格式设置扫描间隔。详细信息请参考，例如: <a
                   href="https://crontab.guru"
                   class="underline"
                   target="_blank"

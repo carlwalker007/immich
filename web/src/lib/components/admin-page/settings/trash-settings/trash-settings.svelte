@@ -24,9 +24,9 @@
       <div class="ml-4 mt-4 flex flex-col gap-4">
         <SettingSwitch
           id="enable-trash-features"
-          title="ENABLED"
+          title="启用"
           {disabled}
-          subtitle="Enable Trash features"
+          subtitle="启用回收站功能"
           bind:checked={config.trash.enabled}
         />
 
@@ -34,8 +34,8 @@
 
         <SettingInputField
           inputType={SettingInputFieldType.NUMBER}
-          label="Number of days"
-          desc="Number of days to keep the assets in trash before permanently removing them"
+          label="天数"
+          desc="永久删除资产之前将其保留在回收站中的天数"
           bind:value={config.trash.days}
           required={true}
           disabled={disabled || !config.trash.enabled}

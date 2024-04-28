@@ -21,8 +21,8 @@
       <div class="ml-4 mt-4">
         <SettingSwitch
           id="enable-new-version-check"
-          title="ENABLED"
-          subtitle="Enable periodic requests to GitHub to check for new releases"
+          title="启用"
+          subtitle="启用对 GitHub 的定期请求以检查新版本"
           bind:checked={config.newVersionCheck.enabled}
           {disabled}
         />

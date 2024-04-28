@@ -99,7 +99,7 @@
       <p class="font-medium text-gray-500/60 dark:text-gray-300/60 p-4">
         已删除的项目将在 {$serverConfig.trashDays} 天后永久删除.
       </p>
-      <EmptyPlaceholder text="Trashed photos and videos will show up here." src={empty3Url} slot="empty" />
+      <EmptyPlaceholder text="已删除的照片和视频将显示在此处." src={empty3Url} slot="empty" />
     </AssetGrid>
   </UserPageLayout>
 {/if}
@@ -107,14 +107,14 @@
 {#if isShowEmptyConfirmation}
   <ConfirmDialogue
     id="empty-trash-modal"
-    title="Empty trash"
+    title="清空回收站"
     confirmText="Empty"
     onConfirm={handleEmptyTrash}
     onClose={() => (isShowEmptyConfirmation = false)}
   >
     <svelte:fragment slot="prompt">
-      <p>Are you sure you want to empty the trash? This will remove all the assets in trash permanently from Immich.</p>
-      <p><b>You cannot undo this action!</b></p>
+      <p>您确定要清空回收站吗？这将从 Immich 永久删除回收站中的所有资产.</p>
+      <p><b>您无法撤消此操作!</b></p>
     </svelte:fragment>
   </ConfirmDialogue>
 {/if}

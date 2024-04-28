@@ -37,14 +37,14 @@
       <div class="ml-4 mt-4 flex flex-col gap-4">
         <p class="text-sm dark:text-immich-dark-fg">
           <Icon path={mdiHelpCircleOutline} class="inline" size="15" />
-          To learn more about the terminology used here, refer to FFmpeg documentation for
+          要了解更多关于这里使用的术语，请参考 FFmpeg 文档中的
           <a href="https://trac.ffmpeg.org/wiki/Encode/H.264" class="underline" target="_blank" rel="noreferrer"
             >H.264 codec</a
           >,
           <a href="https://trac.ffmpeg.org/wiki/Encode/H.265" class="underline" target="_blank" rel="noreferrer"
             >HEVC codec</a
           >
-          and
+          和
           <a href="https://trac.ffmpeg.org/wiki/Encode/VP9" class="underline" target="_blank" rel="noreferrer"
             >VP9 codec</a
           >.
@@ -54,7 +54,7 @@
           inputType={SettingInputFieldType.NUMBER}
           {disabled}
           label="CONSTANT RATE FACTOR (-crf)"
-          desc="Video quality level. Typical values are 23 for H.264, 28 for HEVC, 31 for VP9, and 35 for AV1. Lower is better, but produces larger files."
+          desc="视频质量级别。H.264 典型值为 23，HEVC 为 28，VP9 为 31，AV1 为 35。数值越低越好，但会产生更大的文件."
           bind:value={config.ffmpeg.crf}
           required={true}
           isEdited={config.ffmpeg.crf !== savedConfig.ffmpeg.crf}
@@ -63,7 +63,7 @@
         <SettingSelect
           label="PRESET (-preset)"
           {disabled}
-          desc="Compression speed. Slower presets produce smaller files, and increase quality when targeting a certain bitrate. VP9 ignores speeds above `faster`."
+          desc="压缩速度。较慢的预设会产生较小的文件，并在以特定比特率为目标时提高质量。VP9 在 `faster` 以上的速度被忽略。"
           bind:value={config.ffmpeg.preset}
           name="preset"
           options={[
@@ -83,7 +83,7 @@
         <SettingSelect
           label="AUDIO CODEC"
           {disabled}
-          desc="Opus is the highest quality option, but has lower compatibility with old devices or software."
+          desc="Opus 是最高质量的选择，但与旧设备或软件的兼容性较低."
           bind:value={config.ffmpeg.targetAudioCodec}
           options={[
             { value: AudioCodec.Aac, text: 'aac' },
@@ -101,7 +101,7 @@
         <SettingCheckboxes
           label="ACCEPTED AUDIO CODECS"
           {disabled}
-          desc="Select which audio codecs do not need to be transcoded. Only used for certain transcode policies."
+          desc="选择不需要转码的音频编解码器。 仅用于某些转码策略."
           bind:value={config.ffmpeg.acceptedAudioCodecs}
           name="audioCodecs"
           options={[
@@ -115,7 +115,7 @@
         <SettingSelect
           label="VIDEO CODEC"
           {disabled}
-          desc="VP9 has high efficiency and web compatibility, but takes longer to transcode. HEVC performs similarly, but has lower web compatibility. H.264 is widely compatible and quick to transcode, but produces much larger files. AV1 is the most efficient codec but lacks support on older devices."
+          desc="VP9 具有高效率和网络兼容性，但转码时间较长。HEVC 表现类似，但网络兼容性较低。H.264 兼容性广泛，转码速度快，但产生的文件更大。AV1 是最高效的编解码器，但在旧设备上缺乏支持."
           bind:value={config.ffmpeg.targetVideoCodec}
           options={[
             { value: VideoCodec.H264, text: 'h264' },
@@ -131,7 +131,7 @@
         <SettingCheckboxes
           label="ACCEPTED VIDEO CODECS"
           {disabled}
-          desc="Select which video codecs do not need to be transcoded. Only used for certain transcode policies."
+          desc="选择不需要转码的视频编解码器。 仅用于某些转码策略."
           bind:value={config.ffmpeg.acceptedVideoCodecs}
           name="videoCodecs"
           options={[
@@ -146,7 +146,7 @@
         <SettingSelect
           label="TARGET RESOLUTION"
           {disabled}
-          desc="Higher resolutions can preserve more detail but take longer to encode, have larger file sizes, and can reduce app responsiveness."
+          desc="较高的分辨率可以保留更多细节，但编码时间较长，文件大小较大，并且会降低应用响应速度."
           bind:value={config.ffmpeg.targetResolution}
           options={[
             { value: '2160', text: '4k' },
@@ -164,7 +164,7 @@
           inputType={SettingInputFieldType.TEXT}
           {disabled}
           label="MAX BITRATE"
-          desc="Setting a max bitrate can make file sizes more predictable at a minor cost to quality. At 720p, typical values are 2600k for VP9 or HEVC, or 4500k for H.264. Disabled if set to 0."
+          desc="设置最大比特率可以使文件大小更可预测，而质量成本却很小。 在 720p 下，VP9 或 HEVC 的典型值为 2600k，H.264 的典型值为 4500k。 如果设置为 0 则禁用."
           bind:value={config.ffmpeg.maxBitrate}
           isEdited={config.ffmpeg.maxBitrate !== savedConfig.ffmpeg.maxBitrate}
         />

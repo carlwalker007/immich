@@ -22,14 +22,14 @@
       <div class="ml-4 mt-4 flex flex-col gap-4">
         <SettingSwitch
           id="enable-logging"
-          title="ENABLED"
+          title="启用"
           {disabled}
-          subtitle="Logging"
+          subtitle="日志"
           bind:checked={config.logging.enabled}
         />
         <SettingSelect
-          label="LEVEL"
-          desc="When enabled, what log level to use."
+          label="等级"
+          desc="启用后, 使用日志级别."
           bind:value={config.logging.level}
           options={[
             { value: LogLevel.Fatal, text: 'Fatal' },

@@ -148,8 +148,8 @@
     },
     {
       item: TrashSettings,
-      title: '垃圾桶设置',
-      subtitle: '管理垃圾桶设置',
+      title: '回收站设置',
+      subtitle: '管理回收站设置',
       key: 'trash',
     },
     {

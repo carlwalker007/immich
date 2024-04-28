@@ -26,7 +26,7 @@
           inputType={SettingInputFieldType.NUMBER}
           min={1}
           label="DELETE DELAY"
-          desc="Number of days after removal to permanently delete a user's account and assets. The user deletion job runs at midnight to check for users that are ready for deletion. Changes to this setting will be evaluated at the next execution."
+          desc="用户帐户和资产永久删除之前的天数。用户删除作业在午夜运行，以检查准备删除的用户。对此设置的更改将在下次执行时进行评估。"
           bind:value={config.user.deleteDelay}
           isEdited={config.user.deleteDelay !== savedConfig.user.deleteDelay}
         />

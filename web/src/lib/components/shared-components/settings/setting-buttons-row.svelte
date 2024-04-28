@@ -19,7 +19,7 @@
         on:click={() => dispatch('reset', { default: true })}
         class="bg-none text-sm font-medium text-immich-primary hover:text-immich-primary/75 dark:text-immich-dark-primary hover:dark:text-immich-dark-primary/75"
       >
-        Reset to default
+        重置为默认
       </button>
     {/if}
   </div>
