@@ -5,7 +5,7 @@ import { ExifEntity } from 'src/entities/exif.entity';
 import { ReverseGeocodeResult } from 'src/interfaces/metadata.interface';
 import { AssetSearchOptions, SearchExploreItem } from 'src/interfaces/search.interface';
 import { Paginated, PaginationOptions } from 'src/utils/pagination';
-import { FindOptionsRelations, FindOptionsSelect } from 'typeorm';
+import { FindOptionsOrder, FindOptionsRelations, FindOptionsSelect } from 'typeorm';
 
 export type AssetStats = Record<AssetType, number>;
 
@@ -40,6 +40,7 @@ export enum WithoutProperty {
   ENCODED_VIDEO = 'encoded-video',
   EXIF = 'exif',
   SMART_SEARCH = 'smart-search',
+  DUPLICATE = 'duplicate',
   OBJECT_TAGS = 'object-tags',
   FACES = 'faces',
   PERSON = 'person',
@@ -60,6 +61,7 @@ export interface AssetBuilderOptions {
   isArchived?: boolean;
   isFavorite?: boolean;
   isTrashed?: boolean;
+  isDuplicate?: boolean;
   albumId?: string;
   personId?: string;
   userIds?: string[];
@@ -134,8 +136,6 @@ export interface AssetFullSyncOptions {
   lastCreationDate?: Date;
   lastId?: string;
   updatedUntil: Date;
-  isArchived?: false;
-  withStacked?: true;
   limit: number;
 }
 
@@ -143,6 +143,12 @@ export interface AssetDeltaSyncOptions {
   userIds: string[];
   updatedAfter: Date;
   limit: number;
+}
+
+export interface AssetUpdateDuplicateOptions {
+  targetDuplicateId: string | null;
+  assetIds: string[];
+  duplicateIds: string[];
 }
 
 export type AssetPathEntity = Pick<AssetEntity, 'id' | 'originalPath' | 'isOffline'>;
@@ -159,9 +165,14 @@ export interface IAssetRepository {
   getByIdsWithAllRelations(ids: string[]): Promise<AssetEntity[]>;
   getByDayOfYear(ownerIds: string[], monthDay: MonthDay): Promise<AssetEntity[]>;
   getByChecksum(libraryId: string, checksum: Buffer): Promise<AssetEntity | null>;
+  getUploadAssetIdByChecksum(ownerId: string, checksum: Buffer): Promise<string | undefined>;
   getByAlbumId(pagination: PaginationOptions, albumId: string): Paginated<AssetEntity>;
   getByUserId(pagination: PaginationOptions, userId: string, options?: AssetSearchOptions): Paginated<AssetEntity>;
-  getById(id: string, relations?: FindOptionsRelations<AssetEntity>): Promise<AssetEntity | null>;
+  getById(
+    id: string,
+    relations?: FindOptionsRelations<AssetEntity>,
+    order?: FindOptionsOrder<AssetEntity>,
+  ): Promise<AssetEntity | null>;
   getWithout(pagination: PaginationOptions, property: WithoutProperty): Paginated<AssetEntity>;
   getWith(pagination: PaginationOptions, property: WithProperty, libraryId?: string): Paginated<AssetEntity>;
   getRandom(userId: string, count: number): Promise<AssetEntity[]>;
@@ -173,19 +184,21 @@ export interface IAssetRepository {
   getAll(pagination: PaginationOptions, options?: AssetSearchOptions): Paginated<AssetEntity>;
   getAllByDeviceId(userId: string, deviceId: string): Promise<string[]>;
   updateAll(ids: string[], options: Partial<AssetUpdateAllOptions>): Promise<void>;
+  updateDuplicates(options: AssetUpdateDuplicateOptions): Promise<void>;
   update(asset: AssetUpdateOptions): Promise<void>;
   remove(asset: AssetEntity): Promise<void>;
   softDeleteAll(ids: string[]): Promise<void>;
   restoreAll(ids: string[]): Promise<void>;
   findLivePhotoMatch(options: LivePhotoSearchOptions): Promise<AssetEntity | null>;
-  getMapMarkers(ownerIds: string[], options?: MapMarkerSearchOptions): Promise<MapMarker[]>;
+  getMapMarkers(ownerIds: string[], albumIds: string[], options?: MapMarkerSearchOptions): Promise<MapMarker[]>;
   getStatistics(ownerId: string, options: AssetStatsOptions): Promise<AssetStats>;
   getTimeBuckets(options: TimeBucketOptions): Promise<TimeBucketItem[]>;
   getTimeBucket(timeBucket: string, options: TimeBucketOptions): Promise<AssetEntity[]>;
   upsertExif(exif: Partial<ExifEntity>): Promise<void>;
-  upsertJobStatus(jobStatus: Partial<AssetJobStatusEntity>): Promise<void>;
+  upsertJobStatus(...jobStatus: Partial<AssetJobStatusEntity>[]): Promise<void>;
   getAssetIdByCity(userId: string, options: AssetExploreFieldOptions): Promise<SearchExploreItem<string>>;
   getAssetIdByTag(userId: string, options: AssetExploreFieldOptions): Promise<SearchExploreItem<string>>;
+  getDuplicates(options: AssetBuilderOptions): Promise<AssetEntity[]>;
   getAllForUserFullSync(options: AssetFullSyncOptions): Promise<AssetEntity[]>;
   getChangedDeltaSync(options: AssetDeltaSyncOptions): Promise<AssetEntity[]>;
 }

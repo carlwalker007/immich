@@ -19,6 +19,7 @@ import { IMemoryRepository } from 'src/interfaces/memory.interface';
 import { IMetadataRepository } from 'src/interfaces/metadata.interface';
 import { IMetricRepository } from 'src/interfaces/metric.interface';
 import { IMoveRepository } from 'src/interfaces/move.interface';
+import { INotificationRepository } from 'src/interfaces/notification.interface';
 import { IPartnerRepository } from 'src/interfaces/partner.interface';
 import { IPersonRepository } from 'src/interfaces/person.interface';
 import { ISearchRepository } from 'src/interfaces/search.interface';
@@ -26,7 +27,6 @@ import { IServerInfoRepository } from 'src/interfaces/server-info.interface';
 import { ISessionRepository } from 'src/interfaces/session.interface';
 import { ISharedLinkRepository } from 'src/interfaces/shared-link.interface';
 import { IStorageRepository } from 'src/interfaces/storage.interface';
-import { ISystemConfigRepository } from 'src/interfaces/system-config.interface';
 import { ISystemMetadataRepository } from 'src/interfaces/system-metadata.interface';
 import { ITagRepository } from 'src/interfaces/tag.interface';
 import { IUserRepository } from 'src/interfaces/user.interface';
@@ -51,6 +51,7 @@ import { MemoryRepository } from 'src/repositories/memory.repository';
 import { MetadataRepository } from 'src/repositories/metadata.repository';
 import { MetricRepository } from 'src/repositories/metric.repository';
 import { MoveRepository } from 'src/repositories/move.repository';
+import { NotificationRepository } from 'src/repositories/notification.repository';
 import { PartnerRepository } from 'src/repositories/partner.repository';
 import { PersonRepository } from 'src/repositories/person.repository';
 import { SearchRepository } from 'src/repositories/search.repository';
@@ -58,7 +59,6 @@ import { ServerInfoRepository } from 'src/repositories/server-info.repository';
 import { SessionRepository } from 'src/repositories/session.repository';
 import { SharedLinkRepository } from 'src/repositories/shared-link.repository';
 import { StorageRepository } from 'src/repositories/storage.repository';
-import { SystemConfigRepository } from 'src/repositories/system-config.repository';
 import { SystemMetadataRepository } from 'src/repositories/system-metadata.repository';
 import { TagRepository } from 'src/repositories/tag.repository';
 import { UserRepository } from 'src/repositories/user.repository';
@@ -84,6 +84,7 @@ export const repositories = [
   { provide: IMetadataRepository, useClass: MetadataRepository },
   { provide: IMetricRepository, useClass: MetricRepository },
   { provide: IMoveRepository, useClass: MoveRepository },
+  { provide: INotificationRepository, useClass: NotificationRepository },
   { provide: IPartnerRepository, useClass: PartnerRepository },
   { provide: IPersonRepository, useClass: PersonRepository },
   { provide: IServerInfoRepository, useClass: ServerInfoRepository },
@@ -91,7 +92,6 @@ export const repositories = [
   { provide: ISearchRepository, useClass: SearchRepository },
   { provide: ISessionRepository, useClass: SessionRepository },
   { provide: IStorageRepository, useClass: StorageRepository },
-  { provide: ISystemConfigRepository, useClass: SystemConfigRepository },
   { provide: ISystemMetadataRepository, useClass: SystemMetadataRepository },
   { provide: ITagRepository, useClass: TagRepository },
   { provide: IMediaRepository, useClass: MediaRepository },

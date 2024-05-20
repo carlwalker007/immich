@@ -1386,6 +1386,14 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "name": "withSharedAlbums",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -1679,6 +1687,15 @@
             "name": "key",
             "required": false,
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-immich-checksum",
+            "in": "header",
+            "description": "sha1 checksum that can be used for duplicate detection before the file is uploaded",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -2201,6 +2218,41 @@
         ],
         "tags": [
           "Download"
+        ]
+      }
+    },
+    "/duplicates": {
+      "get": {
+        "operationId": "getAssetDuplicates",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DuplicateResponseDto"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "cookie": []
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "tags": [
+          "Duplicate"
         ]
       }
     },
@@ -5805,15 +5857,6 @@
           },
           {
             "api_key": []
-          },
-          {
-            "bearer": []
-          },
-          {
-            "cookie": []
-          },
-          {
-            "api_key": []
           }
         ],
         "tags": [
@@ -5933,15 +5976,6 @@
           }
         },
         "security": [
-          {
-            "bearer": []
-          },
-          {
-            "cookie": []
-          },
-          {
-            "api_key": []
-          },
           {
             "bearer": []
           },
@@ -6447,7 +6481,7 @@
   "info": {
     "title": "Immich",
     "description": "Immich API",
-    "version": "1.103.1",
+    "version": "1.105.1",
     "contact": {}
   },
   "tags": [],
@@ -6770,6 +6804,22 @@
         ],
         "type": "object"
       },
+      "AlbumUserCreateDto": {
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/AlbumUserRole"
+          },
+          "userId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "userId"
+        ],
+        "type": "object"
+      },
       "AlbumUserResponseDto": {
         "properties": {
           "role": {
@@ -6797,6 +6847,9 @@
           "backgroundTask": {
             "$ref": "#/components/schemas/JobStatusDto"
           },
+          "duplicateDetection": {
+            "$ref": "#/components/schemas/JobStatusDto"
+          },
           "faceDetection": {
             "$ref": "#/components/schemas/JobStatusDto"
           },
@@ -6810,6 +6863,9 @@
             "$ref": "#/components/schemas/JobStatusDto"
           },
           "migration": {
+            "$ref": "#/components/schemas/JobStatusDto"
+          },
+          "notifications": {
             "$ref": "#/components/schemas/JobStatusDto"
           },
           "search": {
@@ -6833,11 +6889,13 @@
         },
         "required": [
           "backgroundTask",
+          "duplicateDetection",
           "faceDetection",
           "facialRecognition",
           "library",
           "metadataExtraction",
           "migration",
+          "notifications",
           "search",
           "sidecar",
           "smartSearch",
@@ -7260,6 +7318,10 @@
           "deviceId": {
             "type": "string"
           },
+          "duplicateId": {
+            "nullable": true,
+            "type": "string"
+          },
           "duration": {
             "type": "string"
           },
@@ -7284,6 +7346,8 @@
             "type": "boolean"
           },
           "isExternal": {
+            "deprecated": true,
+            "description": "This property was deprecated in v1.104.0",
             "type": "boolean"
           },
           "isFavorite": {
@@ -7293,6 +7357,8 @@
             "type": "boolean"
           },
           "isReadOnly": {
+            "deprecated": true,
+            "description": "This property was deprecated in v1.104.0",
             "type": "boolean"
           },
           "isTrashed": {
@@ -7375,10 +7441,8 @@
           "hasMetadata",
           "id",
           "isArchived",
-          "isExternal",
           "isFavorite",
           "isOffline",
-          "isReadOnly",
           "isTrashed",
           "libraryId",
           "localDateTime",
@@ -7584,6 +7648,13 @@
           "albumName": {
             "type": "string"
           },
+          "albumUsers": {
+            "description": "This property was added in v1.104.0",
+            "items": {
+              "$ref": "#/components/schemas/AlbumUserCreateDto"
+            },
+            "type": "array"
+          },
           "assetIds": {
             "items": {
               "format": "uuid",
@@ -7595,6 +7666,8 @@
             "type": "string"
           },
           "sharedWithUserIds": {
+            "deprecated": true,
+            "description": "This property was deprecated in v1.104.0",
             "items": {
               "format": "uuid",
               "type": "string"
@@ -7639,9 +7712,6 @@
           "isOffline": {
             "type": "boolean"
           },
-          "isReadOnly": {
-            "type": "boolean"
-          },
           "isVisible": {
             "type": "boolean"
           },
@@ -7680,9 +7750,6 @@
               "type": "string"
             },
             "type": "array"
-          },
-          "isVisible": {
-            "type": "boolean"
           },
           "name": {
             "type": "string"
@@ -7753,6 +7820,9 @@
           },
           "name": {
             "type": "string"
+          },
+          "notify": {
+            "type": "boolean"
           },
           "password": {
             "type": "string"
@@ -7843,6 +7913,42 @@
         "required": [
           "archives",
           "totalSize"
+        ],
+        "type": "object"
+      },
+      "DuplicateDetectionConfig": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "maxDistance": {
+            "format": "float",
+            "maximum": 0.1,
+            "minimum": 0.001,
+            "type": "number"
+          }
+        },
+        "required": [
+          "enabled",
+          "maxDistance"
+        ],
+        "type": "object"
+      },
+      "DuplicateResponseDto": {
+        "properties": {
+          "assets": {
+            "items": {
+              "$ref": "#/components/schemas/AssetResponseDto"
+            },
+            "type": "array"
+          },
+          "duplicateId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "assets",
+          "duplicateId"
         ],
         "type": "object"
       },
@@ -8140,12 +8246,14 @@
           "faceDetection",
           "facialRecognition",
           "smartSearch",
+          "duplicateDetection",
           "backgroundTask",
           "storageTemplateMigration",
           "migration",
           "search",
           "sidecar",
-          "library"
+          "library",
+          "notifications"
         ],
         "type": "string"
       },
@@ -8582,9 +8690,6 @@
           "isEncoded": {
             "type": "boolean"
           },
-          "isExternal": {
-            "type": "boolean"
-          },
           "isFavorite": {
             "type": "boolean"
           },
@@ -8595,9 +8700,6 @@
             "type": "boolean"
           },
           "isOffline": {
-            "type": "boolean"
-          },
-          "isReadOnly": {
             "type": "boolean"
           },
           "isVisible": {
@@ -9357,6 +9459,12 @@
           "configFile": {
             "type": "boolean"
           },
+          "duplicateDetection": {
+            "type": "boolean"
+          },
+          "email": {
+            "type": "boolean"
+          },
           "facialRecognition": {
             "type": "boolean"
           },
@@ -9390,6 +9498,8 @@
         },
         "required": [
           "configFile",
+          "duplicateDetection",
+          "email",
           "facialRecognition",
           "map",
           "oauth",
@@ -9800,9 +9910,6 @@
           "isEncoded": {
             "type": "boolean"
           },
-          "isExternal": {
-            "type": "boolean"
-          },
           "isFavorite": {
             "type": "boolean"
           },
@@ -9813,9 +9920,6 @@
             "type": "boolean"
           },
           "isOffline": {
-            "type": "boolean"
-          },
-          "isReadOnly": {
             "type": "boolean"
           },
           "isVisible": {
@@ -9925,6 +10029,9 @@
           "newVersionCheck": {
             "$ref": "#/components/schemas/SystemConfigNewVersionCheckDto"
           },
+          "notifications": {
+            "$ref": "#/components/schemas/SystemConfigNotificationsDto"
+          },
           "oauth": {
             "$ref": "#/components/schemas/SystemConfigOAuthDto"
           },
@@ -9959,6 +10066,7 @@
           "machineLearning",
           "map",
           "newVersionCheck",
+          "notifications",
           "oauth",
           "passwordLogin",
           "reverseGeocoding",
@@ -9974,6 +10082,9 @@
         "properties": {
           "accel": {
             "$ref": "#/components/schemas/TranscodeHWAccel"
+          },
+          "accelDecode": {
+            "type": "boolean"
           },
           "acceptedAudioCodecs": {
             "items": {
@@ -10050,6 +10161,7 @@
         },
         "required": [
           "accel",
+          "accelDecode",
           "acceptedAudioCodecs",
           "acceptedVideoCodecs",
           "bframes",
@@ -10128,6 +10240,9 @@
           "migration": {
             "$ref": "#/components/schemas/JobSettingsDto"
           },
+          "notifications": {
+            "$ref": "#/components/schemas/JobSettingsDto"
+          },
           "search": {
             "$ref": "#/components/schemas/JobSettingsDto"
           },
@@ -10150,6 +10265,7 @@
           "library",
           "metadataExtraction",
           "migration",
+          "notifications",
           "search",
           "sidecar",
           "smartSearch",
@@ -10219,6 +10335,9 @@
           "clip": {
             "$ref": "#/components/schemas/CLIPConfig"
           },
+          "duplicateDetection": {
+            "$ref": "#/components/schemas/DuplicateDetectionConfig"
+          },
           "enabled": {
             "type": "boolean"
           },
@@ -10231,6 +10350,7 @@
         },
         "required": [
           "clip",
+          "duplicateDetection",
           "enabled",
           "facialRecognition",
           "url"
@@ -10264,6 +10384,17 @@
         },
         "required": [
           "enabled"
+        ],
+        "type": "object"
+      },
+      "SystemConfigNotificationsDto": {
+        "properties": {
+          "smtp": {
+            "$ref": "#/components/schemas/SystemConfigSmtpDto"
+          }
+        },
+        "required": [
+          "smtp"
         ],
         "type": "object"
       },
@@ -10365,6 +10496,58 @@
         "required": [
           "externalDomain",
           "loginPageMessage"
+        ],
+        "type": "object"
+      },
+      "SystemConfigSmtpDto": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "from": {
+            "type": "string"
+          },
+          "replyTo": {
+            "type": "string"
+          },
+          "transport": {
+            "$ref": "#/components/schemas/SystemConfigSmtpTransportDto"
+          }
+        },
+        "required": [
+          "enabled",
+          "from",
+          "replyTo",
+          "transport"
+        ],
+        "type": "object"
+      },
+      "SystemConfigSmtpTransportDto": {
+        "properties": {
+          "host": {
+            "type": "string"
+          },
+          "ignoreCert": {
+            "type": "boolean"
+          },
+          "password": {
+            "type": "string"
+          },
+          "port": {
+            "maximum": 65535,
+            "minimum": 0,
+            "type": "number"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "host",
+          "ignoreCert",
+          "password",
+          "port",
+          "username"
         ],
         "type": "object"
       },
@@ -10646,9 +10829,6 @@
               "type": "string"
             },
             "type": "array"
-          },
-          "isVisible": {
-            "type": "boolean"
           },
           "name": {
             "type": "string"

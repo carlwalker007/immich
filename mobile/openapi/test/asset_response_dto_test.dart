@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -29,6 +29,11 @@ void main() {
 
     // String deviceId
     test('to test the property `deviceId`', () async {
+      // TODO
+    });
+
+    // String duplicateId
+    test('to test the property `duplicateId`', () async {
       // TODO
     });
 
@@ -67,6 +72,7 @@ void main() {
       // TODO
     });
 
+    // This property was deprecated in v1.104.0
     // bool isExternal
     test('to test the property `isExternal`', () async {
       // TODO
@@ -82,6 +88,7 @@ void main() {
       // TODO
     });
 
+    // This property was deprecated in v1.104.0
     // bool isReadOnly
     test('to test the property `isReadOnly`', () async {
       // TODO

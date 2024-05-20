@@ -18,6 +18,7 @@
 </a>
 <br/>
 <p align="center">
+
   <a href="readme_i18n/README_ca_ES.md">Català</a>
   <a href="readme_i18n/README_es_ES.md">Español</a>
   <a href="readme_i18n/README_fr_FR.md">Français</a>
@@ -29,6 +30,8 @@
   <a href="readme_i18n/README_tr_TR.md">Türkçe</a>
   <a href="readme_i18n/README_zh_CN.md">中文</a>
   <a href="readme_i18n/README_ru_RU.md">Русский</a>
+  <a href="readme_i18n/README_pt_BR.md">Português Brasileiro</a>
+  <a href="readme_i18n/README_ar_JO.md">العربية</a>
 </p>
 
 ## Disclaimer
@@ -47,7 +50,6 @@
 - [Introduction](https://immich.app/docs/overview/introduction)
 - [Installation](https://immich.app/docs/install/requirements)
 - [Contribution Guidelines](https://immich.app/docs/overview/support-the-project)
-- [Support The Project](#support-the-project)
 
 ## Documentation
 
@@ -70,6 +72,7 @@ Spec: Free-tier Oracle VM - Amsterdam - 2.4Ghz quad-core ARM64 CPU, 24GB RAM
 ```
 
 ## Activities
+
 ![Activities](https://repobeats.axiom.co/api/embed/9e86d9dc3ddd137161f2f6d2e758d7863b1789cb.svg "Repobeats analytics image")
 
 ## Features

@@ -16,7 +16,6 @@ import {
   createPerson,
   createSharedLink,
   createUser,
-  defaults,
   deleteAssets,
   getAllAssets,
   getAllJobsStatus,
@@ -24,6 +23,7 @@ import {
   getConfigDefaults,
   login,
   searchMetadata,
+  setBaseUrl,
   signUpAdmin,
   updateAdminOnboarding,
   updateAlbumUser,
@@ -56,8 +56,8 @@ const baseUrl = 'http://127.0.0.1:2283';
 export const shareUrl = `${baseUrl}/share`;
 export const app = `${baseUrl}/api`;
 // TODO move test assets into e2e/assets
-export const testAssetDir = path.resolve(`./../server/test/assets/`);
-export const testAssetDirInternal = '/data/assets';
+export const testAssetDir = path.resolve('./test-assets');
+export const testAssetDirInternal = '/test-assets';
 export const tempDir = tmpdir();
 export const asBearerAuth = (accessToken: string) => ({ Authorization: `Bearer ${accessToken}` });
 export const asKeyAuth = (key: string) => ({ 'x-api-key': key });
@@ -145,7 +145,6 @@ export const utils = {
         'sessions',
         'users',
         'system_metadata',
-        'system_config',
       ];
 
       const sql: string[] = [];
@@ -256,8 +255,8 @@ export const utils = {
     });
   },
 
-  setApiEndpoint: () => {
-    defaults.baseUrl = app;
+  initSdk: () => {
+    setBaseUrl(app);
   },
 
   adminSetup: async (options?: AdminSetupOptions) => {
@@ -463,7 +462,7 @@ export const utils = {
   },
 };
 
-utils.setApiEndpoint();
+utils.initSdk();
 
 if (!existsSync(`${testAssetDir}/albums`)) {
   throw new Error(

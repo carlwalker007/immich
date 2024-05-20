@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -21,6 +21,12 @@ void main() {
       // TODO
     });
 
+    // This property was added in v1.104.0
+    // List<AlbumUserCreateDto> albumUsers (default value: const [])
+    test('to test the property `albumUsers`', () async {
+      // TODO
+    });
+
     // List<String> assetIds (default value: const [])
     test('to test the property `assetIds`', () async {
       // TODO
@@ -31,6 +37,7 @@ void main() {
       // TODO
     });
 
+    // This property was deprecated in v1.104.0
     // List<String> sharedWithUserIds (default value: const [])
     test('to test the property `sharedWithUserIds`', () async {
       // TODO

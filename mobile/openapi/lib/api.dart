@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -36,6 +36,7 @@ part 'api/asset_api.dart';
 part 'api/audit_api.dart';
 part 'api/authentication_api.dart';
 part 'api/download_api.dart';
+part 'api/duplicate_api.dart';
 part 'api/face_api.dart';
 part 'api/file_report_api.dart';
 part 'api/job_api.dart';
@@ -68,6 +69,7 @@ part 'model/admin_onboarding_update_dto.dart';
 part 'model/album_count_response_dto.dart';
 part 'model/album_response_dto.dart';
 part 'model/album_user_add_dto.dart';
+part 'model/album_user_create_dto.dart';
 part 'model/album_user_response_dto.dart';
 part 'model/album_user_role.dart';
 part 'model/all_job_status_response_dto.dart';
@@ -113,6 +115,8 @@ part 'model/delete_user_dto.dart';
 part 'model/download_archive_info.dart';
 part 'model/download_info_dto.dart';
 part 'model/download_response_dto.dart';
+part 'model/duplicate_detection_config.dart';
+part 'model/duplicate_response_dto.dart';
 part 'model/entity_type.dart';
 part 'model/exif_response_dto.dart';
 part 'model/face_dto.dart';
@@ -202,10 +206,13 @@ part 'model/system_config_logging_dto.dart';
 part 'model/system_config_machine_learning_dto.dart';
 part 'model/system_config_map_dto.dart';
 part 'model/system_config_new_version_check_dto.dart';
+part 'model/system_config_notifications_dto.dart';
 part 'model/system_config_o_auth_dto.dart';
 part 'model/system_config_password_login_dto.dart';
 part 'model/system_config_reverse_geocoding_dto.dart';
 part 'model/system_config_server_dto.dart';
+part 'model/system_config_smtp_dto.dart';
+part 'model/system_config_smtp_transport_dto.dart';
 part 'model/system_config_storage_template_dto.dart';
 part 'model/system_config_template_storage_option_dto.dart';
 part 'model/system_config_theme_dto.dart';

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **checksum** | **String** | base64 encoded sha1 hash | 
 **deviceAssetId** | **String** |  | 
 **deviceId** | **String** |  | 
+**duplicateId** | **String** |  | [optional] 
 **duration** | **String** |  | 
 **exifInfo** | [**ExifResponseDto**](ExifResponseDto.md) |  | [optional] 
 **fileCreatedAt** | [**DateTime**](DateTime.md) |  | 
@@ -18,10 +19,10 @@ Name | Type | Description | Notes
 **hasMetadata** | **bool** |  | 
 **id** | **String** |  | 
 **isArchived** | **bool** |  | 
-**isExternal** | **bool** |  | 
+**isExternal** | **bool** | This property was deprecated in v1.104.0 | [optional] 
 **isFavorite** | **bool** |  | 
 **isOffline** | **bool** |  | 
-**isReadOnly** | **bool** |  | 
+**isReadOnly** | **bool** | This property was deprecated in v1.104.0 | [optional] 
 **isTrashed** | **bool** |  | 
 **libraryId** | **String** |  | 
 **livePhotoVideoId** | **String** |  | [optional] 

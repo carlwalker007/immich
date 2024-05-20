@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -51,11 +51,6 @@ void main() {
       // TODO
     });
 
-    // bool isExternal
-    test('to test the property `isExternal`', () async {
-      // TODO
-    });
-
     // bool isFavorite
     test('to test the property `isFavorite`', () async {
       // TODO
@@ -73,11 +68,6 @@ void main() {
 
     // bool isOffline
     test('to test the property `isOffline`', () async {
-      // TODO
-    });
-
-    // bool isReadOnly
-    test('to test the property `isReadOnly`', () async {
       // TODO
     });
 

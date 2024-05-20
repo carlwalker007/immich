@@ -56,11 +56,9 @@ export type SearchIdOptions = SearchAssetIDOptions & SearchUserIdOptions;
 export interface SearchStatusOptions {
   isArchived?: boolean;
   isEncoded?: boolean;
-  isExternal?: boolean;
   isFavorite?: boolean;
   isMotion?: boolean;
   isOffline?: boolean;
-  isReadOnly?: boolean;
   isVisible?: boolean;
   isNotInAlbum?: boolean;
   type?: AssetType;
@@ -154,15 +152,29 @@ export interface FaceEmbeddingSearch extends SearchEmbeddingOptions {
   maxDistance?: number;
 }
 
+export interface AssetDuplicateSearch {
+  assetId: string;
+  embedding: Embedding;
+  userIds: string[];
+  maxDistance?: number;
+}
+
 export interface FaceSearchResult {
   distance: number;
   face: AssetFaceEntity;
+}
+
+export interface AssetDuplicateResult {
+  assetId: string;
+  duplicateId: string | null;
+  distance: number;
 }
 
 export interface ISearchRepository {
   init(modelName: string): Promise<void>;
   searchMetadata(pagination: SearchPaginationOptions, options: AssetSearchOptions): Paginated<AssetEntity>;
   searchSmart(pagination: SearchPaginationOptions, options: SmartSearchOptions): Paginated<AssetEntity>;
+  searchDuplicates(options: AssetDuplicateSearch): Promise<AssetDuplicateResult[]>;
   searchFaces(search: FaceEmbeddingSearch): Promise<FaceSearchResult[]>;
   upsert(assetId: string, embedding: number[]): Promise<void>;
   searchPlaces(placeName: string): Promise<GeodataPlacesEntity[]>;

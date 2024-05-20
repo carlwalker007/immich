@@ -1,6 +1,6 @@
 /**
  * Immich
- * 1.103.1
+ * 1.105.1
  * DO NOT MODIFY - This file has been generated using oazapfts.
  * See https://www.npmjs.com/package/oazapfts
  */
@@ -115,6 +115,7 @@ export type AssetResponseDto = {
     checksum: string;
     deviceAssetId: string;
     deviceId: string;
+    duplicateId?: string | null;
     duration: string;
     exifInfo?: ExifResponseDto;
     fileCreatedAt: string;
@@ -122,10 +123,12 @@ export type AssetResponseDto = {
     hasMetadata: boolean;
     id: string;
     isArchived: boolean;
-    isExternal: boolean;
+    /** This property was deprecated in v1.104.0 */
+    isExternal?: boolean;
     isFavorite: boolean;
     isOffline: boolean;
-    isReadOnly: boolean;
+    /** This property was deprecated in v1.104.0 */
+    isReadOnly?: boolean;
     isTrashed: boolean;
     libraryId: string;
     livePhotoVideoId?: string | null;
@@ -167,10 +170,17 @@ export type AlbumResponseDto = {
     startDate?: string;
     updatedAt: string;
 };
+export type AlbumUserCreateDto = {
+    role: AlbumUserRole;
+    userId: string;
+};
 export type CreateAlbumDto = {
     albumName: string;
+    /** This property was added in v1.104.0 */
+    albumUsers?: AlbumUserCreateDto[];
     assetIds?: string[];
     description?: string;
+    /** This property was deprecated in v1.104.0 */
     sharedWithUserIds?: string[];
 };
 export type AlbumCountResponseDto = {
@@ -296,7 +306,6 @@ export type CreateAssetDto = {
     isArchived?: boolean;
     isFavorite?: boolean;
     isOffline?: boolean;
-    isReadOnly?: boolean;
     isVisible?: boolean;
     libraryId?: string;
     livePhotoData?: Blob;
@@ -364,6 +373,10 @@ export type DownloadResponseDto = {
     archives: DownloadArchiveInfo[];
     totalSize: number;
 };
+export type DuplicateResponseDto = {
+    assets: AssetResponseDto[];
+    duplicateId: string;
+};
 export type PersonResponseDto = {
     birthDate: string | null;
     id: string;
@@ -402,11 +415,13 @@ export type JobStatusDto = {
 };
 export type AllJobStatusResponseDto = {
     backgroundTask: JobStatusDto;
+    duplicateDetection: JobStatusDto;
     faceDetection: JobStatusDto;
     facialRecognition: JobStatusDto;
     library: JobStatusDto;
     metadataExtraction: JobStatusDto;
     migration: JobStatusDto;
+    notifications: JobStatusDto;
     search: JobStatusDto;
     sidecar: JobStatusDto;
     smartSearch: JobStatusDto;
@@ -433,7 +448,6 @@ export type LibraryResponseDto = {
 export type CreateLibraryDto = {
     exclusionPatterns?: string[];
     importPaths?: string[];
-    isVisible?: boolean;
     name?: string;
     ownerId: string;
     "type": LibraryType;
@@ -441,7 +455,6 @@ export type CreateLibraryDto = {
 export type UpdateLibraryDto = {
     exclusionPatterns?: string[];
     importPaths?: string[];
-    isVisible?: boolean;
     name?: string;
 };
 export type ScanLibraryDto = {
@@ -621,12 +634,10 @@ export type MetadataSearchDto = {
     id?: string;
     isArchived?: boolean;
     isEncoded?: boolean;
-    isExternal?: boolean;
     isFavorite?: boolean;
     isMotion?: boolean;
     isNotInAlbum?: boolean;
     isOffline?: boolean;
-    isReadOnly?: boolean;
     isVisible?: boolean;
     lensModel?: string;
     libraryId?: string;
@@ -698,12 +709,10 @@ export type SmartSearchDto = {
     deviceId?: string;
     isArchived?: boolean;
     isEncoded?: boolean;
-    isExternal?: boolean;
     isFavorite?: boolean;
     isMotion?: boolean;
     isNotInAlbum?: boolean;
     isOffline?: boolean;
-    isReadOnly?: boolean;
     isVisible?: boolean;
     lensModel?: string;
     libraryId?: string;
@@ -745,6 +754,8 @@ export type ServerConfigDto = {
 };
 export type ServerFeaturesDto = {
     configFile: boolean;
+    duplicateDetection: boolean;
+    email: boolean;
     facialRecognition: boolean;
     map: boolean;
     oauth: boolean;
@@ -857,6 +868,7 @@ export type AssetFullSyncDto = {
 };
 export type SystemConfigFFmpegDto = {
     accel: TranscodeHWAccel;
+    accelDecode: boolean;
     acceptedAudioCodecs: AudioCodec[];
     acceptedVideoCodecs: VideoCodec[];
     bframes: number;
@@ -895,6 +907,7 @@ export type SystemConfigJobDto = {
     library: JobSettingsDto;
     metadataExtraction: JobSettingsDto;
     migration: JobSettingsDto;
+    notifications: JobSettingsDto;
     search: JobSettingsDto;
     sidecar: JobSettingsDto;
     smartSearch: JobSettingsDto;
@@ -922,6 +935,10 @@ export type ClipConfig = {
     modelName: string;
     modelType?: ModelType;
 };
+export type DuplicateDetectionConfig = {
+    enabled: boolean;
+    maxDistance: number;
+};
 export type RecognitionConfig = {
     enabled: boolean;
     maxDistance: number;
@@ -932,6 +949,7 @@ export type RecognitionConfig = {
 };
 export type SystemConfigMachineLearningDto = {
     clip: ClipConfig;
+    duplicateDetection: DuplicateDetectionConfig;
     enabled: boolean;
     facialRecognition: RecognitionConfig;
     url: string;
@@ -943,6 +961,22 @@ export type SystemConfigMapDto = {
 };
 export type SystemConfigNewVersionCheckDto = {
     enabled: boolean;
+};
+export type SystemConfigSmtpTransportDto = {
+    host: string;
+    ignoreCert: boolean;
+    password: string;
+    port: number;
+    username: string;
+};
+export type SystemConfigSmtpDto = {
+    enabled: boolean;
+    "from": string;
+    replyTo: string;
+    transport: SystemConfigSmtpTransportDto;
+};
+export type SystemConfigNotificationsDto = {
+    smtp: SystemConfigSmtpDto;
 };
 export type SystemConfigOAuthDto = {
     autoLaunch: boolean;
@@ -994,6 +1028,7 @@ export type SystemConfigDto = {
     machineLearning: SystemConfigMachineLearningDto;
     map: SystemConfigMapDto;
     newVersionCheck: SystemConfigNewVersionCheckDto;
+    notifications: SystemConfigNotificationsDto;
     oauth: SystemConfigOAuthDto;
     passwordLogin: SystemConfigPasswordLoginDto;
     reverseGeocoding: SystemConfigReverseGeocodingDto;
@@ -1035,6 +1070,7 @@ export type CreateUserDto = {
     email: string;
     memoriesEnabled?: boolean;
     name: string;
+    notify?: boolean;
     password: string;
     quotaSizeInBytes?: number | null;
     shouldChangePassword?: boolean;
@@ -1417,12 +1453,13 @@ export function runAssetJobs({ assetJobsDto }: {
         body: assetJobsDto
     })));
 }
-export function getMapMarkers({ fileCreatedAfter, fileCreatedBefore, isArchived, isFavorite, withPartners }: {
+export function getMapMarkers({ fileCreatedAfter, fileCreatedBefore, isArchived, isFavorite, withPartners, withSharedAlbums }: {
     fileCreatedAfter?: string;
     fileCreatedBefore?: string;
     isArchived?: boolean;
     isFavorite?: boolean;
     withPartners?: boolean;
+    withSharedAlbums?: boolean;
 }, opts?: Oazapfts.RequestOpts) {
     return oazapfts.ok(oazapfts.fetchJson<{
         status: 200;
@@ -1432,7 +1469,8 @@ export function getMapMarkers({ fileCreatedAfter, fileCreatedBefore, isArchived,
         fileCreatedBefore,
         isArchived,
         isFavorite,
-        withPartners
+        withPartners,
+        withSharedAlbums
     }))}`, {
         ...opts
     }));
@@ -1503,8 +1541,9 @@ export function getAssetThumbnail({ format, id, key }: {
         ...opts
     }));
 }
-export function uploadFile({ key, createAssetDto }: {
+export function uploadFile({ key, xImmichChecksum, createAssetDto }: {
     key?: string;
+    xImmichChecksum?: string;
     createAssetDto: CreateAssetDto;
 }, opts?: Oazapfts.RequestOpts) {
     return oazapfts.ok(oazapfts.fetchJson<{
@@ -1515,7 +1554,10 @@ export function uploadFile({ key, createAssetDto }: {
     }))}`, oazapfts.multipart({
         ...opts,
         method: "POST",
-        body: createAssetDto
+        body: createAssetDto,
+        headers: oazapfts.mergeHeaders(opts?.headers, {
+            "x-immich-checksum": xImmichChecksum
+        })
     })));
 }
 export function getAssetInfo({ id, key }: {
@@ -1657,6 +1699,14 @@ export function getDownloadInfo({ key, downloadInfoDto }: {
         method: "POST",
         body: downloadInfoDto
     })));
+}
+export function getAssetDuplicates(opts?: Oazapfts.RequestOpts) {
+    return oazapfts.ok(oazapfts.fetchJson<{
+        status: 200;
+        data: DuplicateResponseDto[];
+    }>("/duplicates", {
+        ...opts
+    }));
 }
 export function getFaces({ id }: {
     id: string;
@@ -2847,12 +2897,14 @@ export enum JobName {
     FaceDetection = "faceDetection",
     FacialRecognition = "facialRecognition",
     SmartSearch = "smartSearch",
+    DuplicateDetection = "duplicateDetection",
     BackgroundTask = "backgroundTask",
     StorageTemplateMigration = "storageTemplateMigration",
     Migration = "migration",
     Search = "search",
     Sidecar = "sidecar",
-    Library = "library"
+    Library = "library",
+    Notifications = "notifications"
 }
 export enum JobCommand {
     Start = "start",

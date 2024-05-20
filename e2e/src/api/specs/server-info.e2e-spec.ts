@@ -66,6 +66,7 @@ describe('/server-info', () => {
       expect(body).toEqual({
         smartSearch: false,
         configFile: false,
+        duplicateDetection: false,
         facialRecognition: false,
         map: true,
         reverseGeocoding: true,
@@ -75,6 +76,7 @@ describe('/server-info', () => {
         search: true,
         sidecar: true,
         trash: true,
+        email: false,
       });
     });
   });

@@ -107,9 +107,6 @@ export class AssetEntity {
   isExternal!: boolean;
 
   @Column({ type: 'boolean', default: false })
-  isReadOnly!: boolean;
-
-  @Column({ type: 'boolean', default: false })
   isOffline!: boolean;
 
   @Column({ type: 'bytea' })
@@ -168,6 +165,10 @@ export class AssetEntity {
 
   @OneToOne(() => AssetJobStatusEntity, (jobStatus) => jobStatus.asset, { nullable: true })
   jobStatus?: AssetJobStatusEntity;
+
+  @Index('IDX_assets_duplicateId')
+  @Column({ type: 'uuid', nullable: true })
+  duplicateId!: string | null;
 }
 
 export enum AssetType {

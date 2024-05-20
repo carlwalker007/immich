@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -206,6 +206,8 @@ class ApiClient {
           return AlbumResponseDto.fromJson(value);
         case 'AlbumUserAddDto':
           return AlbumUserAddDto.fromJson(value);
+        case 'AlbumUserCreateDto':
+          return AlbumUserCreateDto.fromJson(value);
         case 'AlbumUserResponseDto':
           return AlbumUserResponseDto.fromJson(value);
         case 'AlbumUserRole':
@@ -296,6 +298,10 @@ class ApiClient {
           return DownloadInfoDto.fromJson(value);
         case 'DownloadResponseDto':
           return DownloadResponseDto.fromJson(value);
+        case 'DuplicateDetectionConfig':
+          return DuplicateDetectionConfig.fromJson(value);
+        case 'DuplicateResponseDto':
+          return DuplicateResponseDto.fromJson(value);
         case 'EntityType':
           return EntityTypeTypeTransformer().decode(value);
         case 'ExifResponseDto':
@@ -474,6 +480,8 @@ class ApiClient {
           return SystemConfigMapDto.fromJson(value);
         case 'SystemConfigNewVersionCheckDto':
           return SystemConfigNewVersionCheckDto.fromJson(value);
+        case 'SystemConfigNotificationsDto':
+          return SystemConfigNotificationsDto.fromJson(value);
         case 'SystemConfigOAuthDto':
           return SystemConfigOAuthDto.fromJson(value);
         case 'SystemConfigPasswordLoginDto':
@@ -482,6 +490,10 @@ class ApiClient {
           return SystemConfigReverseGeocodingDto.fromJson(value);
         case 'SystemConfigServerDto':
           return SystemConfigServerDto.fromJson(value);
+        case 'SystemConfigSmtpDto':
+          return SystemConfigSmtpDto.fromJson(value);
+        case 'SystemConfigSmtpTransportDto':
+          return SystemConfigSmtpTransportDto.fromJson(value);
         case 'SystemConfigStorageTemplateDto':
           return SystemConfigStorageTemplateDto.fromJson(value);
         case 'SystemConfigTemplateStorageOptionDto':

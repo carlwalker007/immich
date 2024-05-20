@@ -1,8 +1,6 @@
 import { ApiProperty, ApiResponseProperty } from '@nestjs/swagger';
-import type { DateTime } from 'luxon';
-import { FeatureFlags } from 'src/cores/system-config.core';
 import { SystemConfigThemeDto } from 'src/dtos/system-config.dto';
-import { IVersion, VersionType } from 'src/utils/version';
+import { IVersion } from 'src/utils/version';
 
 export class ServerPingResponse {
   @ApiResponseProperty({ type: String, example: 'pong' })
@@ -96,8 +94,9 @@ export class ServerConfigDto {
   externalDomain!: string;
 }
 
-export class ServerFeaturesDto implements FeatureFlags {
+export class ServerFeaturesDto {
   smartSearch!: boolean;
+  duplicateDetection!: boolean;
   configFile!: boolean;
   facialRecognition!: boolean;
   map!: boolean;
@@ -108,11 +107,13 @@ export class ServerFeaturesDto implements FeatureFlags {
   passwordLogin!: boolean;
   sidecar!: boolean;
   search!: boolean;
+  email!: boolean;
 }
 
 export interface ReleaseNotification {
-  isAvailable: VersionType;
-  checkedAt: DateTime<boolean> | null;
+  isAvailable: boolean;
+  /** ISO8601 */
+  checkedAt: string;
   serverVersion: ServerVersionResponseDto;
   releaseVersion: ServerVersionResponseDto;
 }

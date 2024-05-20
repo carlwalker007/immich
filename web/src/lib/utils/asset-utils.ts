@@ -10,7 +10,7 @@ import { createAlbum } from '$lib/utils/album-utils';
 import { encodeHTMLSpecialChars } from '$lib/utils/string-utils';
 import {
   addAssetsToAlbum as addAssets,
-  defaults,
+  getBaseUrl,
   getDownloadInfo,
   updateAssets,
   type AlbumResponseDto,
@@ -121,7 +121,7 @@ export const downloadArchive = async (fileName: string, options: DownloadInfoDto
       // TODO use sdk once it supports progress events
       const { data } = await downloadRequest({
         method: 'POST',
-        url: defaults.baseUrl + '/download/archive' + (key ? `?key=${key}` : ''),
+        url: getBaseUrl() + '/download/archive' + (key ? `?key=${key}` : ''),
         data: { assetIds: archive.assetIds },
         signal: abort.signal,
         onDownloadProgress: (event) => downloadManager.update(downloadKey, event.loaded),
@@ -177,7 +177,7 @@ export const downloadFile = async (asset: AssetResponseDto) => {
       // TODO use sdk once it supports progress events
       const { data } = await downloadRequest({
         method: 'POST',
-        url: defaults.baseUrl + `/download/asset/${id}` + (key ? `?key=${key}` : ''),
+        url: getBaseUrl() + `/download/asset/${id}` + (key ? `?key=${key}` : ''),
         signal: abort.signal,
         onDownloadProgress: (event) => downloadManager.update(downloadKey, event.loaded, event.total),
       });
@@ -218,14 +218,18 @@ function isRotated270CW(orientation: number) {
   return orientation === 7 || orientation === 8 || orientation === -90;
 }
 
+export function isFlipped(orientation?: string | null) {
+  const value = Number(orientation);
+  return value && (isRotated270CW(value) || isRotated90CW(value));
+}
+
 /**
  * Returns aspect ratio for the asset
  */
 export function getAssetRatio(asset: AssetResponseDto) {
   let height = asset.exifInfo?.exifImageHeight || 235;
   let width = asset.exifInfo?.exifImageWidth || 235;
-  const orientation = Number(asset.exifInfo?.orientation);
-  if (orientation && (isRotated90CW(orientation) || isRotated270CW(orientation))) {
+  if (isFlipped(asset.exifInfo?.orientation)) {
     [width, height] = [height, width];
   }
   return { width, height };
@@ -258,9 +262,9 @@ export const getAssetType = (type: AssetTypeEnum) => {
 };
 
 export const getSelectedAssets = (assets: Set<AssetResponseDto>, user: UserResponseDto | null): string[] => {
-  const ids = [...assets].filter((a) => !a.isExternal && user && a.ownerId === user.id).map((a) => a.id);
+  const ids = [...assets].filter((a) => user && a.ownerId === user.id).map((a) => a.id);
 
-  const numberOfIssues = [...assets].filter((a) => a.isExternal || (user && a.ownerId !== user.id)).length;
+  const numberOfIssues = [...assets].filter((a) => user && a.ownerId !== user.id).length;
   if (numberOfIssues > 0) {
     notificationController.show({
       message: `Can't change metadata of ${numberOfIssues} asset${numberOfIssues > 1 ? 's' : ''}`,
@@ -370,7 +374,6 @@ export const selectAllAssets = async (assetStore: AssetStore, assetInteractionSt
     }
   } catch (error) {
     handleError(error, 'Error selecting all assets');
-  } finally {
     isSelectingAllAssets.set(false);
   }
 };
